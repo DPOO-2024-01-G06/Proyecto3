@@ -1,4 +1,4 @@
-package galeria.persistencia;
+package persistencia;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

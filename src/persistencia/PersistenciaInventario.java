@@ -1,22 +1,22 @@
-package galeria.persistencia;
+package persistencia;
 import java.io.BufferedReader;
-import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
 
+public class PersistenciaInventario{
 
-public class PersistenciaVentasPendientes {
-	private String archivoVentasPendientes;
+	private String archivoInventario;
 
-	public PersistenciaVentasPendientes(String archivoVentasPendientes) {
-		this.archivoVentasPendientes = archivoVentasPendientes;
+	public PersistenciaInventario(String archivoInventario) {
+		this.archivoInventario = archivoInventario;
 	}
 
-	 public static <V> void guardarVentasPendientes(Map<?, V> mapa, String archivoVentasPendientes) {
-	     try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivoVentasPendientes))) {
+	 public static <V> void guardarVentasPendientes(Map<?, V> mapa, String Inventario) {
+	     try (BufferedWriter writer = new BufferedWriter(new FileWriter(Inventario))) {
 	            for (V valor : mapa.values()) {
 	                writer.write(valor.toString());
 	                writer.newLine();
@@ -26,9 +26,9 @@ public class PersistenciaVentasPendientes {
 	        }
 	    }
 	 
-	 public static Map<Integer, String> cargarMapa(String archivoVentasPendientes) {
+	 public static Map<Integer, String> cargarMapa(String Inventario) {
 	        Map<Integer, String> mapa = new HashMap<>();
-	        try (BufferedReader reader = new BufferedReader(new FileReader(archivoVentasPendientes))) {
+	        try (BufferedReader reader = new BufferedReader(new FileReader(Inventario))) {
 	            String linea;
 	            int contador = 0;
 	            while ((linea = reader.readLine()) != null) {
@@ -39,6 +39,5 @@ public class PersistenciaVentasPendientes {
 	        }
 	        return mapa;
 	    }
-	 }
+}
 
-	 

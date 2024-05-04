@@ -1,4 +1,4 @@
-package galeria.persistencia;
+package persistencia;
 
 import java.util.ArrayList;
 import java.util.List;
