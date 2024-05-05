@@ -1,7 +1,8 @@
 package galeria.structurer_inventario;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+
+import galeria.structurer_usuarios.Externo;
 
 public class InventarioGaleria {
     private Map<Integer, Subasta> subastasPendientes;
@@ -30,11 +31,12 @@ public class InventarioGaleria {
     }
 
     //el primer intento de un cliente de comprar la pieza
-    public void intentoVender(Venta venta) {
+    public void intentoVender(Venta venta, Externo externo) {
         int hashCode = Objects.hash(venta.getPieza().getTitulo(), venta.getPieza().getAutor());
         Venta ventaPendiente = ventasPendientes.get(hashCode);
         Pieza piezaVenta = ventaPendiente.getPieza();
         piezaVenta.setBloqueado(true);
+        ventaPendiente.setExterno(externo);
         Pieza piezainvent = inventario.get(hashCode);
         piezainvent.setBloqueado(true);
     }
@@ -43,14 +45,15 @@ public class InventarioGaleria {
     public void venderPieza(Venta venta, boolean aceptada) {
         int hashCode = Objects.hash(venta.getPieza().getTitulo(), venta.getPieza().getAutor());
         if (aceptada) {
-            ventasPendientes.get(hashCode).setAceptada(true);;
+            ventasPendientes.get(hashCode).setAceptada(true);
         }
         else {
             Venta ventaPendiente = ventasPendientes.get(hashCode);
             Pieza piezaVenta = ventaPendiente.getPieza();
-            piezaVenta.setBloqueado(true);
+            piezaVenta.setBloqueado(false);
+            ventaPendiente.setExterno(null);
             Pieza piezainvent = inventario.get(hashCode);
-            piezainvent.setBloqueado(true);
+            piezainvent.setBloqueado(false);
         }
     }
 
@@ -87,6 +90,12 @@ public class InventarioGaleria {
             Pieza pieza = inventario.get(hashCode);
             pieza.setBloqueado(true);
         } 
+    }
+    
+    public void devolverPieza(Venta venta) {
+    	int hashCode = Objects.hash(venta.getPieza().getTitulo(), venta.getPieza().getAutor());
+    	ventasPendientes.remove(hashCode);
+    	inventario.remove(hashCode);
     }
     
     public Map<Integer, Pieza> getInventario(){

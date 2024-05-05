@@ -1,8 +1,6 @@
 package galeria.structurer_usuarios;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import galeria.structurer_inventario.Pieza;
 import galeria.structurer_inventario.Subasta;
 import galeria.structurer_inventario.Venta;
@@ -18,12 +16,12 @@ public class Externo extends Usuario {
 		this.comprador = comprador;
     }
     
-    public Comprador crearComprador(String nombreUsuario, String contraseña, String nombre, String celular, String correo) {
-        Comprador comprador = new Comprador(0, false, 0, new ArrayList<Venta>(), new ArrayList<Subasta>());
+    public Comprador crearComprador( String contraseña, String nombre, String celular, String correo, float salario) {
+        Comprador comprador = new Comprador(-1, false, new ArrayList<Venta>(), new ArrayList<Subasta>(), new ArrayList<Venta>(), salario);
         return comprador;
     }
     
-    public Propietario crearPropietario(String nombreUsuario, String contraseña, String nombre, String celular, String correo) {
+    public Propietario crearPropietario(String contraseña, String nombre, String celular, String correo) {
         Propietario propietario = new Propietario(new ArrayList<Pieza>(),new ArrayList<Pieza>());
         return propietario;
     }

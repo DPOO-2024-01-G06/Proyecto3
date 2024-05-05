@@ -4,33 +4,34 @@ import galeria.Galeria;
 import galeria.structurer_usuarios.Externo;
 
 public class Controlador_Externos {
-	private Controlador_Propietario controladorPropietario;
-	private Controlador_Comprador controladorComprador;
+	private ControladorPropietario controladorPropietario;
+	private ControladorComprador controladorComprador;
 	private String controladorActual;
 	private Galeria galeria;
 	private Externo externo;
-	private boolean decision;
 
 	Controlador_Externos(Externo externo, Galeria galeria){
 		this.galeria = galeria;
 		this.externo = externo;
 		}
-	public void setDecision(boolean decision) {
-		this.decision = decision;
+	public void Decidir(boolean decision) {
 		if(decision) {
-			controladorComprador = new Controlador_Comprador(galeria, externo);
+			controladorComprador = new ControladorComprador(galeria, externo);
 			controladorActual = "Controlador_Comprador";
 		}
 		else {
-			controladorPropietario = new Controlador_Propietario(galeria, externo);
+			controladorPropietario = new ControladorPropietario(galeria, externo);
 			controladorActual = "Controlador_Propietario";
 		}
 	
 	}
-	public Controlador_Propietario getControladorPropietario(){
+	public ControladorPropietario getControladorPropietario(){
 		return controladorPropietario;
 	}
-	public Controlador_Comprador getControladorComprador() {
+	public ControladorComprador getControladorComprador() {
 		return controladorComprador;
+	}
+	public String getControladorActual() {
+		return controladorActual;
 	}
 }

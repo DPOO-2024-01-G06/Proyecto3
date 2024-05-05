@@ -20,11 +20,17 @@ public class InterfazAdministrador {
 		ControladorAdministrador cAdmin = iniciarSesion(galeria);
 		int s = -1;
 		while(s != 9) {
+			
 			mostrarOpciones();
 			s = Integer.valueOf(input("Seleccione una opcion:"));
-			
 			if(s == 1) {
 				uno(cAdmin);
+			}
+			else if(s == 2) {
+				dos(cAdmin);
+			}
+			else if(s == 9) {
+				System.out.println("Saliendo...");
 			}
 			
 			else {
@@ -35,7 +41,9 @@ public class InterfazAdministrador {
 	public static String input(String mensaje) {
 		 Scanner myObj = new Scanner(System.in);  // Create a Scanner object
 		 System.out.print(mensaje + " ");
-		return myObj.next();
+		 String resultado = myObj.next();
+		 myObj.close();
+		return resultado;
 	}
 	public static ControladorAdministrador iniciarSesion(Galeria galeria){
 		ControladorAdministrador controladorAdministrador = null;
@@ -57,7 +65,7 @@ public class InterfazAdministrador {
 		return controladorAdministrador;
 	}
 	public static void mostrarOpciones() {
-		System.out.println("1- Actualizar informacion");
+		System.out.println("\n1- Actualizar informacion");
 		System.out.println("2- Verificar/Invalidar a un comprador");
 		System.out.println("3- Aceptar una propuesta de compra");
 		System.out.println("4- Ingresar una pieza cedida");
@@ -73,34 +81,67 @@ public class InterfazAdministrador {
 		String correo =  input("Ingrese su correo:");
 		String celular =  input("Ingrese su numero de celular:");
 		cAdmin.actualizarInfo(contrasena, nombre, celular, correo);
+		System.out.println("Actualizacion exitosa!");
 	}
 	public static void dos(ControladorAdministrador cAdmin) {
 		List<Externo> pendientes = cAdmin.getUsuariosPendientes();
-		int i = 0;
-		System.out.println("Indice- Nombre- Salario");
-		for(Externo pendiente: pendientes){
-			System.out.println(String.valueOf(i) + "- " + pendiente.getNombre() + "- " + pendiente.getComprador().getSalario());
-			i++;
-		}
-		i = Integer.valueOf(input("Seleccione un indice:"));
-		boolean continuar = true; 
-		while(continuar) {
-			if(i < 0 || i>= pendientes.size()){
-				System.out.println("Indice incorrecto, ningun cambio efectuado");
+		if(pendientes.size() == 0) System.out.println("No tiene usuarios por verificar");
+		else {
+			int i = 0;
+			System.out.println("Indice- Nombre- Salario");
+			for(Externo pendiente: pendientes){
+				System.out.println(String.valueOf(i) + "- " + pendiente.getNombre() + "- " + pendiente.getComprador().getSalario());
+				i++;
 			}
-			else {
-				String dec = input("Desea verficar al usuario[Y] o invalidarlo[N]:");
-				if(dec.equals("Y")) cAdmin.verificarExterno(i);
-				else if(dec.equals("N")) cAdmin.invalidarExterno(i);
-				else System.out.println("Entrada invalida, vuelva a intentarlo");
+			boolean continuar = true; 
+			while(continuar) {
+				i = Integer.valueOf(input("Seleccione un indice:"));
+				if(i < 0 || i>= pendientes.size()){
+					System.out.println("Indice incorrecto, ningun cambio efectuado");
+				}
+				else {
+					String dec = input("Desea verficar al usuario[Y] o invalidarlo[N]:");
+					if(dec.equals("Y")) {
+						float valorMaximo = Float.valueOf(input("Ingrese el valor maximo de compras(sin puntos ni comas):"));
+						cAdmin.verificarExterno(i, valorMaximo);
+						continuar = false;
+					} 
+					else if(dec.equals("N")) { cAdmin.invalidarExterno(i); continuar = false;}
+					else System.out.println("Entrada invalida, vuelva a intentarlo");
+				}
 			}
-			
 		}
 	}
 	public static void tres(ControladorAdministrador cAdmin) {
 		List<Venta> pendientes = cAdmin.getVentasPendientes();
-		
+		if(pendientes.size() == 0) System.out.println("No tiene ventas pendientes por aceptar");
+		else {
+			int i = 0;
+			System.out.println("Indice- Nombre- Salario- Pieza");
+			for(Venta pendiente: pendientes){
+				Externo externo = pendiente.getExterno();
+				System.out.println(String.valueOf(i) + "- " + externo.getNombre() + "- " + externo.getComprador().getSalario() + "- " + pendiente.getPieza().getTitulo());
+				i++;
+			}
+			boolean continuar = true; 
+			while(continuar) {
+				i = Integer.valueOf(input("Seleccione un indice"));
+				if(i < 0 || i>= pendientes.size()){
+					System.out.println("Indice incorrecto, ningun cambio efectuado");
+				}
+				else {
+					String dec = input("Desea aceptar la oferta[Y] o rechazarla[N]:");
+					if(dec.equals("Y")) {
+						cAdmin.confirmarVenta(i, true);
+						continuar = false;
+					} 
+					else if(dec.equals("N")) {cAdmin.confirmarVenta(i, false);; continuar = false;}
+					else System.out.println("Entrada invalida, vuelva a intentarlo");
+				}
+			}
+		}
 	}
+	
 	
 	
 	

@@ -1,6 +1,5 @@
 package galeria.structurer_usuarios;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import galeria.structurer_inventario.Subasta;
@@ -9,18 +8,21 @@ import galeria.structurer_inventario.Venta;
 public class Comprador {
 	private float valorMaximo;
 	private boolean verificado;
-	private float salario;
-	private List<Venta> ventas;
+	private List<Venta> ventasGanadas;
+	private List<Venta> ventasPendientes;
 	private List<Subasta> subastasGanadas;
+	private float salario;
 	
 	
-	public Comprador(float valorMaximo, boolean verificado, float salario, List<Venta> compras,
-			List<Subasta> subastasGanadas) {
+	
+	public Comprador(float valorMaximo, boolean verificado, List<Venta> compras,
+			List<Subasta> subastasGanadas, List<Venta> ventasPendientes, float salario) {
 		this.valorMaximo = valorMaximo;
 		this.verificado = verificado;
-		this.salario = salario;
-		this.ventas = compras;
+		this.ventasGanadas = compras;
 		this.subastasGanadas = subastasGanadas;
+		this.ventasPendientes = ventasPendientes;
+		this.salario = salario;
 	}
 
 	public void setValorMaximo(float valorMaximo) {
@@ -31,31 +33,22 @@ public class Comprador {
 	    this.verificado = verificado;
 	}
 
-	public float getSalario() {
-		return salario;
-	}
-
-    public List<Venta> getVentas() {
-    	return ventas;
+    public List<Venta> getVentasGanadas() {
+    	return ventasGanadas;
     }
-
+	public List<Venta> getVentasPendientes(){
+		return ventasPendientes;
+	}
 	public List<Subasta> getSubastasGanadas() {
 		return subastasGanadas;
     }
-
-    public void agregarSubasta(Subasta subasta) {
-        this.subastasGanadas.add(subasta);
-    }
-
-	public void agregarCompras(Venta venta) {
-		this.ventas.add(venta);
-	}
-	public boolean getVerficiado() {
+	public boolean getVerficado() {
 		return verificado;
 	}
 	public float getValorMaximo() {
 		return valorMaximo;
 	}
-
-		
+	public float getSalario() {
+		return salario;
+	}
 }
