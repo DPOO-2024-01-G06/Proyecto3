@@ -168,7 +168,7 @@ public class PersistenciaInternos {
             String correo = cajeroCampos[3];
             String celular = cajeroCampos[4];
 
-            Cajero cajero = new Cajero(nombreUsuario, contrasena, nombre, correo, celular);
+            //Cajero cajero = new Cajero(nombreUsuario, contrasena, nombre, correo, celular);
 
             String ventaLine;
             while ((ventaLine = reader.readLine()) != null) {
@@ -188,7 +188,7 @@ public class PersistenciaInternos {
                 //cajero.getVentasPendientes().add(venta);
             }
 
-            return cajero;
+            return null;
         } catch (IOException e) {
             System.out.println("No fue posible cargar la informacion del Cajero");
             return null;

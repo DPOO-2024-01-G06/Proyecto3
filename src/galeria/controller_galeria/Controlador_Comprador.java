@@ -44,6 +44,7 @@ public class Controlador_Comprador {
 		Venta venta = getVentasDisponibles().get(indice);
 		venta.setExterno(externo);
 		galeria.getInventarioGaleria().intentoVender(venta);
+		coordinadorUsuarios.intentoComprar(externo, venta);
 	}
 	
 	public void ofertar(int indice, double precio, String metodoPago) {

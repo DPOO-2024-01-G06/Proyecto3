@@ -6,30 +6,30 @@ import galeria.structurer_usuarios.Operador;
 import galeria.structurer_usuarios.Administrador;
 import galeria.structurer_usuarios.Cajero;
 
-public class Controlador_Internos {
+public class ControladorInternos {
 	private String controladorActual;
 	private Galeria galeria;
 	private Controlador_Cajero controladorCajero;
-	private Controlador_Administrador controladorAdministrador;
+	private ControladorAdministrador controladorAdministrador;
 	private Controlador_Operador controladorOperador;
 	private Interno interno;	
 	
-	public Controlador_Internos(Interno interno, Galeria galeria){
+	public ControladorInternos(Interno interno, Galeria galeria){
 		this.interno = interno;
 		this.galeria = galeria;
 	}
 	public void decidirControlador(){
 		if(interno.getTipoInterno() == "administrador") {
-			controladorAdministrador = new Controlador_Administrador(galeria, (Administrador) interno);
-			controladorActual = "Controlador_Administrador";
+			controladorAdministrador = new ControladorAdministrador(galeria, (Administrador) interno);
+			controladorActual = "ControladorAdministrador";
 		}
 		else if(interno.getTipoInterno() == "operador") {
 			controladorOperador = new Controlador_Operador(galeria, (Operador) interno);
-			controladorActual = "Controlador_Operador";
+			controladorActual = "ControladorOperador";
 		}
 		else {
 			controladorCajero = new Controlador_Cajero(galeria, (Cajero) interno);
-			controladorActual = "Controlador_Cajero";
+			controladorActual = "ControladorCajero";
 		}
 	}
 	public String getControladorActual() {
@@ -38,7 +38,7 @@ public class Controlador_Internos {
 	public Controlador_Cajero getControladorCajero() {
 		return controladorCajero;
 	}
-	public Controlador_Administrador getControladorAdministrador() {
+	public ControladorAdministrador getControladorAdministrador() {
 		return controladorAdministrador;
 	}
 	public Controlador_Operador getControladorOperador() {

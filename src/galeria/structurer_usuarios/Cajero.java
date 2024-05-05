@@ -1,6 +1,5 @@
 package galeria.structurer_usuarios;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import galeria.structurer_inventario.Venta;
@@ -8,9 +7,9 @@ import galeria.structurer_inventario.Venta;
 public class Cajero extends Interno {
 	private List<Venta> ventasPendientes;
 	
-	public Cajero (String nombreUsuario, String contraseña, String nombre, String celular, String correo) {
+	public Cajero (String nombreUsuario, String contraseña, String nombre, String celular, String correo, List<Venta> ventasPendientes) {
         super(nombreUsuario, contraseña, nombre, celular, correo);
-		this.ventasPendientes = new ArrayList<>();
+		this.ventasPendientes = ventasPendientes;
 	}
 	
 	public void registrarPago(Venta venta) {

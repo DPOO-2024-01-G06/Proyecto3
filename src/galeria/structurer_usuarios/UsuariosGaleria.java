@@ -1,19 +1,18 @@
 package galeria.structurer_usuarios;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class Usuarios_Galeria {
+public class UsuariosGaleria {
     private Administrador administrador;
     private Cajero cajero;
     private Operador operador;
     private List<Externo> externos;
 
-    public Usuarios_Galeria(Administrador administrador, Cajero cajero, Operador operador){
+    public UsuariosGaleria(Administrador administrador, Cajero cajero, Operador operador, List<Externo> externos){
         this.administrador = administrador;
         this.cajero =  cajero;
         this.operador = operador;
-        this.externos = new ArrayList<>();
+        this.externos = externos;
     }
 
     public void agregarExterno(String nombreUsuario, String contraseña, String nombre, String celular, String correo) {

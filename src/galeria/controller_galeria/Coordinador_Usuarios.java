@@ -41,6 +41,7 @@ public class Coordinador_Usuarios {
 	if(externo.getComprador().getValorMaximo()< venta.getPrecio()) {
 		administrador.getSuperaronLimite().add(externo);
 	}
+	
 	administrador.getPendientesAceptar().add(venta);
 	}
 	public void Ofertar(Externo externo, Oferta oferta) {

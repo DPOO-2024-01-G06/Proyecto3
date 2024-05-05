@@ -9,12 +9,12 @@ import galeria.structurer_inventario.Venta;
 import galeria.structurer_usuarios.Administrador;
 import galeria.structurer_usuarios.Externo;
 
-public class Controlador_Administrador {
+public class ControladorAdministrador {
 	private Administrador administrador;
 	private Galeria galeria;
 	private Coordinador_Usuarios coordinadorUsuarios;
 	
-	public Controlador_Administrador(Galeria galeria, Administrador administrador) {
+	public ControladorAdministrador(Galeria galeria, Administrador administrador) {
 		this.administrador = administrador;
 		this.galeria = galeria;
 		coordinadorUsuarios = new Coordinador_Usuarios(galeria);
@@ -63,6 +63,10 @@ public class Controlador_Administrador {
 	public void reestablecerMaximo(int indice, float nLimite) {
 		Externo externo = administrador.getSuperaronLimite().get(indice);
 		coordinadorUsuarios.reestablecerMaximo(externo, nLimite);
+	}
+	
+	public void actualizarInfo(String contrasena, String nombre, String celular, String correo) {
+		administrador.actualizarDatos(contrasena, nombre, celular, correo);
 	}
 	
 }

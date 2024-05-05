@@ -3,14 +3,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class Inventario_Galeria {
+public class InventarioGaleria {
     private Map<Integer, Subasta> subastasPendientes;
     private Map<Integer, Subasta> subastasPasadas;
     private Map<Integer, Venta> ventasPendientes;
     private Map<Integer, Venta> ventasAceptadas;
     private Map<Integer, Pieza> inventario; 
      
-    public Inventario_Galeria(Map<Integer, Subasta> subastasPendientes, Map<Integer, Subasta> subastasPasadas,
+    public InventarioGaleria(Map<Integer, Subasta> subastasPendientes, Map<Integer, Subasta> subastasPasadas,
 			Map<Integer, Venta> ventasPendientes, Map<Integer, Venta> ventasAceptadas, Map<Integer, Pieza> inventario) {
 		this.subastasPendientes = subastasPendientes;
 		this.subastasPasadas = subastasPasadas;
