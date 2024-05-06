@@ -1,5 +1,6 @@
 package galeria.controller_galeria;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +22,9 @@ public class ControladorAdministrador {
 	public Map<Integer, Pieza> getInventario(){
 		return galeria.getInventarioGaleria().getInventario();
 	}
+	public List<Pieza> getPendientesPorAgregar(){
+		return administrador.getPiezasPorAgregar();
+	}
 	public List<Venta> getVentasPendientes(){
 		return administrador.getPendientesAceptar();
 	}
@@ -30,6 +34,16 @@ public class ControladorAdministrador {
 	public List<Externo> getSuperaronLimite(){
 		return administrador.getSuperaronLimite();
 	}
+	public List<Pieza> getPiezasCedidas(){
+		ArrayList<Pieza> resultado = new ArrayList<Pieza>();		
+		for(Pieza pieza: getInventario().values()) {
+			if(pieza.getExterno() != null) {
+				resultado.add(pieza);
+			}
+		}
+		return resultado;
+	}
+	
 	public void confirmarVenta(int indice, boolean aceptada) {
 		Venta venta = administrador.getPendientesAceptar().get(indice);
 		Externo externo = venta.getExterno();
@@ -69,16 +83,22 @@ public class ControladorAdministrador {
 			comprador.getVentasPendientes().remove(venta);
 		}
 	}
-	public void ingresarPiezaCedida(int indice, double precio) {
-		Pieza pieza = administrador.getPiezasPorAgregar().get(indice);
-		Venta venta = new Venta(precio, false, false, pieza);
-		galeria.getInventarioGaleria().agregarPieza(venta);
+	public void ingresarPiezaCedida(int indice, float precio) {
+		if(precio <= 0) {
+			administrador.getPiezasPorAgregar().remove(indice);	
+		}
+		else {
+			Pieza pieza = administrador.getPiezasPorAgregar().get(indice);
+			Venta venta = new Venta(precio, false, false, pieza);
+			galeria.getInventarioGaleria().	agregarPieza(venta);			
+		}
 	}
-	public void devolverPieza(Venta venta) {
-		galeria.getInventarioGaleria().devolverPieza(venta);
-		Externo externo = venta.getExterno();
-		externo.getPropietario().getPiezasPropiedad().add(venta.getPieza());
-		externo.getPropietario().getPiezasCedidas().remove(venta.getPieza());
+	public void devolverPieza(int indice) {
+		Pieza pieza = getPiezasCedidas().get(indice);
+		galeria.getInventarioGaleria().devolverPieza(pieza);
+		Externo externo = pieza.getExterno();
+		externo.getPropietario().getPiezasPropiedad().add(pieza);
+		externo.getPropietario().getPiezasCedidas().remove(pieza);
 	}
 	public void reestablecerMaximo(int indice, float nLimite) {
 		Externo externo = administrador.getSuperaronLimite().get(indice);

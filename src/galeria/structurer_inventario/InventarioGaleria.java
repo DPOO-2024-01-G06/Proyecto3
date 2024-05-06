@@ -92,8 +92,8 @@ public class InventarioGaleria {
         } 
     }
     
-    public void devolverPieza(Venta venta) {
-    	int hashCode = Objects.hash(venta.getPieza().getTitulo(), venta.getPieza().getAutor());
+    public void devolverPieza(Pieza pieza) {
+    	int hashCode = Objects.hash(pieza.getTitulo(), pieza.getAutor());
     	ventasPendientes.remove(hashCode);
     	inventario.remove(hashCode);
     }

@@ -6,6 +6,7 @@ import galeria.Galeria;
 import galeria.controller_galeria.ControladorAdministrador;
 import galeria.controller_galeria.ControladorInternos;
 import galeria.controller_galeria.CoordinadorSesion;
+import galeria.structurer_inventario.Pieza;
 import galeria.structurer_inventario.Venta;
 import galeria.structurer_usuarios.Externo;
 import persistencia.PersistenciaNuevo;
@@ -29,6 +30,15 @@ public class InterfazAdministrador {
 			else if(s == 2) {
 				dos(cAdmin);
 			}
+			else if(s == 3) {
+				tres(cAdmin);
+			}
+			else if(s == 4) {
+				cuatro(cAdmin);
+			}
+			else if(s ==5) {
+				cinco(cAdmin);
+			}
 			else if(s == 9) {
 				System.out.println("Saliendo...");
 			}
@@ -39,10 +49,10 @@ public class InterfazAdministrador {
 		}
 	}
 	public static String input(String mensaje) {
-		 Scanner myObj = new Scanner(System.in);  // Create a Scanner object
+		 @SuppressWarnings("resource")
+		Scanner myObj = new Scanner(System.in);  // Create a Scanner object
 		 System.out.print(mensaje + " ");
 		 String resultado = myObj.next();
-		 myObj.close();
 		return resultado;
 	}
 	public static ControladorAdministrador iniciarSesion(Galeria galeria){
@@ -67,10 +77,10 @@ public class InterfazAdministrador {
 	public static void mostrarOpciones() {
 		System.out.println("\n1- Actualizar informacion");
 		System.out.println("2- Verificar/Invalidar a un comprador");
-		System.out.println("3- Aceptar una propuesta de compra");
+		System.out.println("3- Aceptar/Rechazar una propuesta de compra");
 		System.out.println("4- Ingresar una pieza cedida");
 		System.out.println("5- Devolver una pieza cedida");
-		System.out.println("6- Actualizar el salario de un comprador");
+		System.out.println("6- Actualizar el valor maximo de un comprador");
 		System.out.println("7- Ver la historia de un comprador");
 		System.out.println("8- Ver la historia de una pieza");
 		System.out.println("9- Cerrar sesion");
@@ -114,7 +124,7 @@ public class InterfazAdministrador {
 	}
 	public static void tres(ControladorAdministrador cAdmin) {
 		List<Venta> pendientes = cAdmin.getVentasPendientes();
-		if(pendientes.size() == 0) System.out.println("No tiene ventas pendientes por aceptar");
+		if(pendientes.size() == 0) System.out.println("No tiene propuestas de compra pendientes por aceptar");
 		else {
 			int i = 0;
 			System.out.println("Indice- Nombre- Salario- Pieza");
@@ -140,6 +150,64 @@ public class InterfazAdministrador {
 				}
 			}
 		}
+	}
+	
+	public static void cuatro(ControladorAdministrador cAdmin) {
+		List<Pieza> pendientes = cAdmin.getPendientesPorAgregar();
+		if(pendientes.size() == 0) System.out.println("No tiene piezas pendientes por ingresar");
+		else {
+			int i = 0;
+			System.out.println("Indice- Nombre Propietario- Titulo- Tiempo Disponible");
+			for(Pieza pendiente: pendientes){
+				Externo externo = pendiente.getExterno();
+				System.out.println(String.valueOf(i) + "- " + externo.getNombre() + "- " + pendiente.getTitulo() + "- " + pendiente.getTiempoDisponible());
+				i++;
+			}
+			boolean continuar = true; 
+			while(continuar) {
+				i = Integer.valueOf(input("Seleccione un indice"));
+				if(i < 0 || i>= pendientes.size()){
+					System.out.println("Indice incorrecto, ningun cambio efectuado");
+				}
+				else {
+					String dec = input("Desea ingresar la pieza[Y] o rechazarla[N]:");
+					if(dec.equals("Y")) {
+						float precio = Float.valueOf(input("Ingrese el precio que le pondra a la pieza"));
+						cAdmin.ingresarPiezaCedida(i, precio);;
+						continuar = false;
+					} 
+					else if(dec.equals("N")) {cAdmin.ingresarPiezaCedida(i, -1); continuar = false;}
+					else System.out.println("Entrada invalida, vuelva a intentarlo");
+				}
+			}
+		}
+	}
+	
+	public static void cinco(ControladorAdministrador cAdmin) {
+		List<Pieza> cedidas = cAdmin.getPiezasCedidas();
+		if(cedidas.size() == 0) System.out.println("La galeria no tiene piezas cedidas");
+		else {
+			int i = 0;
+			System.out.println("Indice- Nombre Propietario- Titulo- Tiempo Disponible");
+			for(Pieza cedida: cedidas){
+				Externo externo = cedida.getExterno();
+				System.out.println(String.valueOf(i) + "- " + externo.getNombre() + "- " + cedida.getTitulo() + "- " + cedida.getTiempoDisponible());
+				i++;
+			}
+			boolean continuar = true; 
+			while(continuar) {
+				i = Integer.valueOf(input("Seleccione el indice de la pieza que quiere devolver a su propietario"));
+				if(i < 0 || i>= cedidas.size()){
+					System.out.println("Indice incorrecto, ningun cambio efectuado");
+				}
+				else {
+					cAdmin.devolverPieza(i);
+				}
+			}
+		}
+	}
+	public static void seis(ControladorAdministrador cAdmin) {
+		
 	}
 	
 	
