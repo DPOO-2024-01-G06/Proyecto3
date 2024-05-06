@@ -1,6 +1,8 @@
 package interfaz;
 
-public class InterfazComprador {
+public class InterfazComprador extends InterfazAbstracta{
+
+
 	
 	
 	

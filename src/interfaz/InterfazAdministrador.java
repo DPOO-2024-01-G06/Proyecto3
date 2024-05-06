@@ -1,16 +1,16 @@
 package interfaz;
 import java.util.List;
-import java.util.Scanner;
 
 import galeria.Galeria;
 import galeria.controller_galeria.ControladorAdministrador;
 import galeria.controller_galeria.CoordinadorSesion;
 import galeria.structurer_inventario.Pieza;
 import galeria.structurer_inventario.Venta;
+import galeria.structurer_usuarios.Comprador;
 import galeria.structurer_usuarios.Externo;
 import persistencia.PersistenciaNuevo;
 
-public class InterfazAdministrador { 
+public class InterfazAdministrador extends InterfazAbstracta{ 
 	
 	public static void main(String[] args) {
 		System.out.println("Bienvenido a la interfaz de administrador!");
@@ -18,11 +18,10 @@ public class InterfazAdministrador {
 		PersistenciaNuevo persistenciaNuevo = new PersistenciaNuevo();
 		Galeria galeria = persistenciaNuevo.nuevaGaleria();
 		ControladorAdministrador cAdmin = iniciarSesion(galeria);
-		int s = -1;
-		while(s != 9) {
-			
+		int s =-1;
+		while(s != 10) {
 			mostrarOpciones();
-			s = Integer.valueOf(input("Seleccione una opcion:"));
+			s = inputInt("Seleccione una opcion:");
 			if(s == 1) {
 				uno(cAdmin);
 			}
@@ -38,7 +37,7 @@ public class InterfazAdministrador {
 			else if(s ==5) {
 				cinco(cAdmin);
 			}
-			else if(s == 9) {
+			else if(s == 10) {
 				System.out.println("Saliendo...");
 			}
 			
@@ -46,13 +45,6 @@ public class InterfazAdministrador {
 				System.out.println("Opcion incorrecta, vuelva a intentarlo");
 			}
 		}
-	}
-	public static String input(String mensaje) {
-		 @SuppressWarnings("resource")
-		Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-		 System.out.print(mensaje + " ");
-		 String resultado = myObj.next();
-		return resultado;
 	}
 	public static ControladorAdministrador iniciarSesion(Galeria galeria){
 		ControladorAdministrador controladorAdministrador = null;
@@ -77,7 +69,8 @@ public class InterfazAdministrador {
 		System.out.println("6- Actualizar el valor maximo de un comprador");
 		System.out.println("7- Ver la historia de un comprador");
 		System.out.println("8- Ver la historia de una pieza");
-		System.out.println("9- Cerrar sesion");
+		System.out.println("9- Ver la historia de un artista");
+		System.out.println("10- Cerrar sesion");
 	}
 	public static void uno(ControladorAdministrador cAdmin) {
 		String contrasena = input("Ingrese una nueva contraseña:");
@@ -97,23 +90,13 @@ public class InterfazAdministrador {
 				System.out.println(String.valueOf(i) + "- " + pendiente.getNombre() + "- " + pendiente.getComprador().getSalario());
 				i++;
 			}
-			boolean continuar = true; 
-			while(continuar) {
-				i = Integer.valueOf(input("Seleccione un indice:"));
-				if(i < 0 || i>= pendientes.size()){
-					System.out.println("Indice incorrecto, ningun cambio efectuado");
-				}
-				else {
-					String dec = input("Desea verficar al usuario[Y] o invalidarlo[N]:");
-					if(dec.equals("Y")) {
-						float valorMaximo = Float.valueOf(input("Ingrese el valor maximo de compras(sin puntos ni comas):"));
-						cAdmin.verificarExterno(i, valorMaximo);
-						continuar = false;
-					} 
-					else if(dec.equals("N")) { cAdmin.invalidarExterno(i); continuar = false;}
-					else System.out.println("Entrada invalida, vuelva a intentarlo");
-				}
-			}
+			i = inputIndex("Seleccione un indice:", pendientes.size());
+			Boolean dec = inputBoolean("Desea verficar al usuario[Y] o invalidarlo[N]:","Y","N");
+			if(dec) {
+				float valorMaximo = inputFloat("Ingrese el valor maximo de compras(con puntos para decimales):");
+				cAdmin.verificarExterno(i, valorMaximo);
+			} 
+			else{cAdmin.invalidarExterno(i);}
 		}
 	}
 	public static void tres(ControladorAdministrador cAdmin) {
@@ -127,22 +110,10 @@ public class InterfazAdministrador {
 				System.out.println(String.valueOf(i) + "- " + externo.getNombre() + "- " + externo.getComprador().getSalario() + "- " + pendiente.getPieza().getTitulo());
 				i++;
 			}
-			boolean continuar = true; 
-			while(continuar) {
-				i = Integer.valueOf(input("Seleccione un indice"));
-				if(i < 0 || i>= pendientes.size()){
-					System.out.println("Indice incorrecto, ningun cambio efectuado");
-				}
-				else {
-					String dec = input("Desea aceptar la oferta[Y] o rechazarla[N]:");
-					if(dec.equals("Y")) {
-						cAdmin.confirmarVenta(i, true);
-						continuar = false;
-					} 
-					else if(dec.equals("N")) {cAdmin.confirmarVenta(i, false);; continuar = false;}
-					else System.out.println("Entrada invalida, vuelva a intentarlo");
-				}
-			}
+				i = inputIndex("Seleccione un indice", pendientes.size());
+				boolean dec = inputBoolean("Desea aceptar la oferta[Y] o rechazarla[N]:","Y","N");
+				if(dec) cAdmin.confirmarVenta(i, true);
+				else cAdmin.confirmarVenta(i, false);
 		}
 	}
 	
@@ -157,23 +128,13 @@ public class InterfazAdministrador {
 				System.out.println(String.valueOf(i) + "- " + externo.getNombre() + "- " + pendiente.getTitulo() + "- " + pendiente.getTiempoDisponible());
 				i++;
 			}
-			boolean continuar = true; 
-			while(continuar) {
-				i = Integer.valueOf(input("Seleccione un indice"));
-				if(i < 0 || i>= pendientes.size()){
-					System.out.println("Indice incorrecto, ningun cambio efectuado");
-				}
-				else {
-					String dec = input("Desea ingresar la pieza[Y] o rechazarla[N]:");
-					if(dec.equals("Y")) {
-						float precio = Float.valueOf(input("Ingrese el precio que le pondra a la pieza"));
-						cAdmin.ingresarPiezaCedida(i, precio);;
-						continuar = false;
-					} 
-					else if(dec.equals("N")) {cAdmin.ingresarPiezaCedida(i, -1); continuar = false;}
-					else System.out.println("Entrada invalida, vuelva a intentarlo");
-				}
-			}
+				i = inputIndex("Seleccione un indice", pendientes.size());
+				boolean dec = inputBoolean("Desea ingresar la pieza[Y] o rechazarla[N]:","Y","N");
+				if(dec) {
+					float precio = inputFloat("Ingrese el precio que le pondra a la pieza");
+					cAdmin.ingresarPiezaCedida(i, precio);;
+				} 
+				else cAdmin.ingresarPiezaCedida(i, -1);
 		}
 	}
 	
@@ -188,26 +149,31 @@ public class InterfazAdministrador {
 				System.out.println(String.valueOf(i) + "- " + externo.getNombre() + "- " + cedida.getTitulo() + "- " + cedida.getTiempoDisponible());
 				i++;
 			}
-			boolean continuar = true; 
-			while(continuar) {
-				i = Integer.valueOf(input("Seleccione el indice de la pieza que quiere devolver a su propietario"));
-				if(i < 0 || i>= cedidas.size()){
-					System.out.println("Indice incorrecto, ningun cambio efectuado");
-				}
-				else {
-					cAdmin.devolverPieza(i);
-				}
-			}
+			
+			i = inputIndex("Seleccione el indice de la pieza que quiere devolver a su propietario", cedidas.size());
+			cAdmin.devolverPieza(i);
 		}
 	}
 	public static void seis(ControladorAdministrador cAdmin) {
-		
+		List<Externo> pendientes = cAdmin.getUsuariosPendientes();
+		if(pendientes.size() == 0) System.out.println("No hay usuarios que hayan superado su valor máximo");
+		else {
+			int i = 0;
+			System.out.println("Indice- Nombre- Salario- Valor máximo");
+			for(Externo pendiente: pendientes){
+				Comprador comprador = pendiente.getComprador();
+				System.out.println(String.valueOf(i) + "- " + pendiente.getNombre() + "- " + comprador.getSalario() + "- " + comprador.getValorMaximo());
+				i++;
+			} 
+			i = inputIndex("Seleccione un indice:", pendientes.size());
+			float valorMaximo = inputFloat("Ingrese el nuevo valor maximo(Con puntos para decimales):");
+			cAdmin.reestablecerMaximo(i, valorMaximo);
+		}
 	}
 	
 	
 	
-	
-	public static void nueve() {
+	public static void diez() {
 		//TODO cargar toda la informacion y actualizarla en los archivos de persistencia.
 	}
 	

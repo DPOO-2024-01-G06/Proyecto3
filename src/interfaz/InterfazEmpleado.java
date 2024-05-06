@@ -1,5 +1,6 @@
 package interfaz;
 
-public class InterfazEmpleado {
+public class InterfazEmpleado extends InterfazAbstracta {
+
 
 }
