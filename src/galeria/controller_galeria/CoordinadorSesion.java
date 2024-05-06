@@ -3,20 +3,25 @@ package galeria.controller_galeria;
 import java.util.List;
 
 import galeria.Galeria;
+import galeria.structurer_usuarios.Administrador;
+import galeria.structurer_usuarios.Cajero;
 import galeria.structurer_usuarios.Externo;
 import galeria.structurer_usuarios.Interno;
+import galeria.structurer_usuarios.Operador;
 import galeria.structurer_usuarios.Usuario;
 import galeria.structurer_usuarios.UsuariosGaleria;
 
 public class CoordinadorSesion {
 	private String nombreUsuario;
 	private String contrasena;
-	private ControladorInternos controladorInternos;
-	private Controlador_Externos controladorExternos;
 	private String controladorActual;
 	private Usuario usuario;
 	private Galeria galeria;
-	
+	private ControladorCajero controladorCajero;
+	private ControladorAdministrador controladorAdministrador;
+	private ControladorOperador controladorOperador;
+	private ControladorComprador controladorComprador;
+	private ControladorPropietario controladorPropietario;
 	
 	public CoordinadorSesion(Galeria galeria,String nombreUsuario, String contrasena) {
 		this.galeria = galeria;
@@ -30,12 +35,35 @@ public class CoordinadorSesion {
 		if(buscado !=null && buscado.getContrasena().equals(contrasena)){
 			usuario = buscado;
 			if(usuario.getTipoUsuario() == "interno") {
-				controladorInternos = new ControladorInternos( (Interno) usuario, galeria);
-				controladorActual = "ControladorInternos";
+				Interno interno = (Interno)usuario;
+				if(interno.getTipoInterno() == "administrador") {
+					controladorActual = "ControladorAdministrador";
+					controladorAdministrador = new ControladorAdministrador(galeria,(Administrador) interno);
+				}
+				else if(interno.getTipoInterno() == "cajero") {
+					controladorActual = "ControladorCajero";
+					controladorCajero = new ControladorCajero(galeria, (Cajero) interno);
+				}
+				else {
+					controladorActual = "ControladorOperador";
+					controladorOperador = new ControladorOperador(galeria, (Operador) interno);
+				}
 			}
 			else {
-				controladorExternos = new Controlador_Externos((Externo) usuario, galeria);
-				controladorActual = "ControladorExternos";
+				controladorActual = "ControladorExterno";
+			}
+		}
+	}
+	
+	public void decidirExterno(boolean decision) {
+		if(controladorActual == "ControladorExterno") {
+			if(decision) {
+				controladorActual = "ControladorComprador";
+				controladorComprador = new ControladorComprador(galeria, (Externo) usuario);
+			}
+			else {
+				controladorActual = "ControladorPropietario";
+				controladorPropietario = new ControladorPropietario(galeria, (Externo)usuario);
 			}
 		}
 	}
@@ -73,10 +101,19 @@ public class CoordinadorSesion {
 	public String getControladorActual() {
 		return controladorActual;
 	}
-	public ControladorInternos getControladorInternos() {
-		return controladorInternos;
+	public ControladorCajero getControladorCajero() {
+		return controladorCajero;
 	}
-	public Controlador_Externos getControladorExternos() {
-		return controladorExternos;
+	public ControladorAdministrador getControladorAdministrador() {
+		return controladorAdministrador;
+	}
+	public ControladorOperador getControladorOperador() {
+		return controladorOperador;
+	}
+	public ControladorComprador getControladorComprador() {
+		return controladorComprador;
+	}
+	public ControladorPropietario getControladorPropietario() {
+		return controladorPropietario;
 	}
 }

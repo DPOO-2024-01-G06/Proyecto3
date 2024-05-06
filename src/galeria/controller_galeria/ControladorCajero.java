@@ -6,10 +6,10 @@ import galeria.Galeria;
 import galeria.structurer_inventario.Venta;
 import galeria.structurer_usuarios.Cajero;
 
-public class Controlador_Cajero {
+public class ControladorCajero {
 	private Galeria galeria;
 	private Cajero cajero;
-	Controlador_Cajero(Galeria galeria, Cajero cajero){
+	ControladorCajero(Galeria galeria, Cajero cajero){
 		this.galeria = galeria;
 		this.cajero = cajero;
 	}

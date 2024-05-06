@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import galeria.Galeria;
 import galeria.controller_galeria.ControladorAdministrador;
-import galeria.controller_galeria.ControladorInternos;
 import galeria.controller_galeria.CoordinadorSesion;
 import galeria.structurer_inventario.Pieza;
 import galeria.structurer_inventario.Venta;
@@ -62,15 +61,10 @@ public class InterfazAdministrador {
 			String contrasena = input("Ingrese su contraseña (0000):");
 			CoordinadorSesion coordinadorSesion = new CoordinadorSesion(galeria, nombreUsuario, contrasena);
 			coordinadorSesion.iniciarSesion();
-			if(coordinadorSesion.getControladorActual().equals("ControladorInternos")) {
-				ControladorInternos controladorInternos = coordinadorSesion.getControladorInternos();
-				controladorInternos.decidirControlador();
-				if(controladorInternos.getControladorActual().equals("ControladorAdministrador")) {
-					controladorAdministrador = controladorInternos.getControladorAdministrador();
-					System.out.println("Ingreso Exitoso!");
-				}
+			if(coordinadorSesion.getControladorActual().equals("ControladorAdministrador")) {
+				controladorAdministrador = coordinadorSesion.getControladorAdministrador();
 			}
-			if(controladorAdministrador == null) System.out.println("Usuario y/o contraseña incorrectos, vuelvalo a intentar");
+			else System.out.println("Usuario y/o contraseña incorrectos, vuelvalo a intentar");
 			}
 		return controladorAdministrador;
 	}

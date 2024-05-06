@@ -9,11 +9,11 @@ import galeria.structurer_inventario.Subasta;
 import galeria.structurer_inventario.Venta;
 import galeria.structurer_usuarios.Operador;
 
-public class Controlador_Operador {
+public class ControladorOperador {
 	private Operador operador; 
 	private Galeria galeria;
 
-	public Controlador_Operador(Galeria galeria, Operador operador){
+	public ControladorOperador(Galeria galeria, Operador operador){
 		this.operador = operador;
 		this.galeria = galeria;
 	}
