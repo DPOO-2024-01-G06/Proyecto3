@@ -45,6 +45,7 @@ public abstract class Pieza {
 		this.artista = artista;
 		this.historialDuenos = historialDuenos;
 		this.venta = venta;
+		artista.addPieza(this);
 	}
 		public void setExhibicion(boolean exhibicion) {
 			this.exhibicion = exhibicion;

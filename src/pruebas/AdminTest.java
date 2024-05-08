@@ -1,10 +1,16 @@
-package persistencia;
+package pruebas;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import galeria.Galeria;
+import galeria.controller_galeria.ControladorAdministrador;
 import galeria.structurer_inventario.Artista;
 import galeria.structurer_inventario.Escultura;
 import galeria.structurer_inventario.InventarioGaleria;
@@ -19,28 +25,42 @@ import galeria.structurer_usuarios.Cajero;
 import galeria.structurer_usuarios.Comprador;
 import galeria.structurer_usuarios.Externo;
 import galeria.structurer_usuarios.Operador;
+import galeria.structurer_usuarios.Propietario;
 import galeria.structurer_usuarios.UsuariosGaleria;
 
-public class PersistenciaNuevo {
+class AdminTest {
+	private Galeria galeria;
+	private ControladorAdministrador cAdmin;
+	@BeforeEach
+	public void setUp() {
+		galeria = SampleGaleria();
+		cAdmin = new ControladorAdministrador(galeria, galeria.getUsuariosGaleria().getAdministrador());
+	}
 
-	public Galeria nuevaGaleria() {
-		return new Galeria(nuevosUsuarios(), nuevoInventario());
+	
+	@Test
+	void testAgregarPiezaAInventario() {
+		Propietario propietario =galeria.getUsuariosGaleria().getExternos().get(0).getPropietario();
+		cAdmin.ingresarPiezaCedida(0, 1000);
+		assertEquals(2,cAdmin.getPendientesPorAgregar().size(),"No se estan reduciendo las piezas en el inventario del ADMIN");
+		assertEquals(1,cAdmin.getListaPiezas().size(),"No se estan colocando las piezas en el inventario");
+		assertEquals(1,propietario.getPiezasCedidas().size(), "No se esta actualizando las piezas que se ceden");
+		assertEquals(0,propietario.getPiezasPropiedad().size(), "No se esta actualizando las piezas propiedad");
+	}
+	@Test
+	void testDevolverPiezaCedida() {
+		Propietario propietario =galeria.getUsuariosGaleria().getExternos().get(0).getPropietario();
+		cAdmin.ingresarPiezaCedida(0, 1000);
+		cAdmin.devolverPieza(0);
+		assertEquals(0,cAdmin.getListaPiezas().size(), "No se esta eliminando la pieza del inventario");
+		assertEquals(1,propietario.getPiezasPropiedad().size(), "No se esta actualizando las piezas propiedad");
+		assertEquals(0,propietario.getPiezasCedidas().size(), "No se estan actualizando las pieza cedidas");
 	}
 	
-	public UsuariosGaleria nuevosUsuarios() {
-		Administrador administrador = new Administrador("ADMIN", "0000", "nombre", "0000000000", "correo@gmail.com", 
-									  new ArrayList<Venta>(), new ArrayList<Pieza>(), new ArrayList<Comprador>(), new ArrayList<Comprador>());
-		Cajero cajero = new Cajero("CAJERO", "0000", "nombre", "correo@gmail.com", "0000000000", new ArrayList<Venta>());
-		Operador operador = new Operador("OPERADOR", "0000", "nombre", "0000000000", "correo@gmail.com", new ArrayList<Oferta>());
-		return new UsuariosGaleria(administrador, cajero, operador, new ArrayList<Externo>());
-		
-	}
-	public InventarioGaleria nuevoInventario() {		
-		return new InventarioGaleria(new HashMap<Integer, Subasta>(), new HashMap<Integer, Subasta>(), new HashMap<Integer, Venta>(), 
-									new HashMap<Integer, Venta>(), new HashMap<Integer, Pieza>(), new ArrayList<Artista>());
-	}
 	
-	public Galeria cargarSampleGaleria() {
+	
+	
+	public Galeria SampleGaleria() {
 		//Crear artistas y asociarles una obra
 		Artista michelangelo = new Artista("Michelangelo", new ArrayList<Pieza>());
 		Escultura escultura = new Escultura("David","1504-06-08", "Florencia", false, 
@@ -76,4 +96,5 @@ public class PersistenciaNuevo {
 	
 	
 	
+
 }

@@ -12,11 +12,12 @@ public class Externo extends Usuario {
     
     public Externo (String nombreUsuario, String contraseña, String nombre, String celular, String correo, Comprador comprador, Propietario propietario) {
 		super(nombreUsuario, contraseña, nombre, celular, correo);
+		this.comprador = comprador;
 		if(propietario == null) {
-			propietario = new Propietario(new ArrayList<Pieza>(), new ArrayList<Pieza>(),new ArrayList<Pieza>(),this);
+			this.propietario = new Propietario(new ArrayList<Pieza>(), new ArrayList<Pieza>(),new ArrayList<Pieza>(),this);
 		}
 		else this.propietario = propietario;
-		this.comprador = comprador;
+		
     }
     public Comprador getComprador() {
         return comprador;

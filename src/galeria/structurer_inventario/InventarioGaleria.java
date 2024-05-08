@@ -69,5 +69,8 @@ public class InventarioGaleria {
     public List<Artista> getArtistas(){
     	return artistas;
     }
+    public void addArtista(Artista artista) {
+    	artistas.add(artista);
+    }
     
 }

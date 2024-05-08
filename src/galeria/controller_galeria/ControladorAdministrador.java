@@ -90,15 +90,15 @@ public class ControladorAdministrador{
 		}
 	}
 	public void ingresarPiezaCedida(int indice, float precio) {
-		if(precio <= 0) {
-			administrador.getPiezasPorAgregar().remove(indice);	
-		}
-		else {
+		if(precio > 0) {
 			Pieza pieza = administrador.getPiezasPorAgregar().get(indice);
 			Venta venta = new Venta(precio, false, false, pieza, null, null);
 			galeria.getInventarioGaleria().	agregarPieza(venta);
-			pieza.getPropietario().getPiezasPropiedad().remove(pieza);
-			pieza.getPropietario().getPiezasCedidas().add(pieza);
+			if(pieza.getPropietario() != null) {
+				pieza.getPropietario().getPiezasPropiedad().remove(pieza);
+				pieza.getPropietario().getPiezasCedidas().add(pieza);		
+			}
+			administrador.getPiezasPorAgregar().remove(indice);
 		}
 	}
 	public void devolverPieza(int indice) {

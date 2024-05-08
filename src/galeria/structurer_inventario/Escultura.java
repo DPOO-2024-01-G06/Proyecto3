@@ -14,7 +14,7 @@ public class Escultura extends Pieza{
 	private String instalacion;
 	
 	public Escultura(String titulo, String fecha, String lugarCreacion, boolean electricidad, String tiempoDisponible,
-			String autor, float alto, float ancho, float profundidad, float peso, String material,
+			float alto, float ancho, float profundidad, float peso, String material,
 			String instalacion, Propietario propietario, Artista artista, Map<String, List<String>> historial, Venta venta) {
 		super(titulo, fecha, lugarCreacion, electricidad, tiempoDisponible, propietario, artista, historial, venta);
 		this.alto = alto;

@@ -3,8 +3,6 @@ package galeria.structurer_usuarios;
 import java.util.List;
 
 import galeria.structurer_inventario.Pieza;
-import galeria.structurer_inventario.Venta;
-
 
 public class Propietario {
 	private List<Pieza> piezasPropiedad;
@@ -34,9 +32,8 @@ public class Propietario {
     public Externo getExterno() {
     	return externo;
     }
-    public List<Venta> getPiezasComprador() {
-    	return externo.getComprador().getPiezasCompradas();
-    	
+    public void addPiezaPropiedad(Pieza pieza) {
+    	piezasPropiedad.add(pieza);
     }
 	
 
