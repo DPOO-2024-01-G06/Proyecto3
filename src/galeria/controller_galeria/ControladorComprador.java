@@ -10,23 +10,25 @@ import galeria.structurer_inventario.Oferta;
 import galeria.structurer_inventario.Subasta;
 import galeria.structurer_inventario.Venta;
 import galeria.structurer_usuarios.Administrador;
+import galeria.structurer_usuarios.Comprador;
 import galeria.structurer_usuarios.Externo;
 
 public class ControladorComprador {
 	private Galeria galeria;
 	private Externo externo;
+	private Comprador comprador;
 	
 	ControladorComprador(Galeria galeria, Externo externo){
 		this.galeria = galeria; 
 		this.externo = externo;
+		comprador = externo.getComprador();
 	}
 	
 	public List<Venta> getVentasDisponibles(){
 		List<Venta> resultado = new ArrayList<Venta>();
 		Collection<Venta> ventasPendientes = galeria.getInventarioGaleria().getVentasPendientes().values();
 		for(Venta venta: ventasPendientes) {
-			if(venta.getPieza().isBloqueado()) {}
-			else {
+			if(venta.getComprador() == null) {
 				resultado.add(venta);
 			}
 		}
@@ -39,14 +41,14 @@ public class ControladorComprador {
 	
 	public void intentoComprar(int indice) {
 		Venta venta = getVentasDisponibles().get(indice);
-		galeria.getInventarioGaleria().intentoVender(venta, externo);
-		externo.getComprador().getVentasPendientes().add(venta);
+		venta.setComprador(comprador);
+		comprador.getVentasPendientes().add(venta);
 		Administrador administrador = galeria.getUsuariosGaleria().getAdministrador();
-		if(! externo.getComprador().getVerficado()) {
-			administrador.getPendientesVerificar().add(externo);
+		if(! comprador.getVerficado()) {
+			administrador.getPendientesVerificar().add(comprador);
 			}
 		if(externo.getComprador().getValorMaximo()< venta.getPrecio()) {
-			administrador.getSuperaronLimite().add(externo);
+			administrador.getSuperaronLimite().add(comprador);
 		}
 		else administrador.getPendientesAceptar().add(venta);
 		}

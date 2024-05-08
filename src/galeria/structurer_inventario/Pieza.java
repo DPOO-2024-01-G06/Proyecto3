@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import galeria.structurer_usuarios.Externo;
+import galeria.structurer_usuarios.Propietario;
 
-public class Pieza {
+public abstract class Pieza {
 	@Override
 	public int hashCode() {
 		return Objects.hash(titulo, artista.getNombre());
@@ -22,36 +22,36 @@ public class Pieza {
 		Pieza other = (Pieza) obj;
 		return Objects.equals(titulo, other.titulo) && Objects.equals(artista.getNombre(), other.artista.getNombre());
 	}
-	protected final String titulo;
-	protected final String fecha;
-	protected final String lugarCreacion;
-	protected final boolean electricidad;
-	protected boolean exhibicion;
-	protected String tiempoDisponible;
-	protected boolean bloqueado;
-	private Externo externo;
-	private final Artista artista;
-	private Map<String, List<String>> historial;
+	private String titulo;
+	private String fecha;
+	private String lugarCreacion;
+	private boolean electricidad;
+	private boolean exhibicion;
+	private String tiempoDisponible;
+	private Propietario propietario;
+	private Artista artista;
+	private Venta venta;
+	private Map<String, List<String>> historialDuenos;
 
-	public Pieza(String titulo, String fecha, String lugarCreacion, boolean electricidad,String tiempoDisponible, Externo externo, Artista artista, Map<String, List<String>> historial) {
+	public Pieza(String titulo, String fecha, String lugarCreacion, boolean electricidad,String tiempoDisponible, Propietario propietario, Artista artista, 
+			Map<String, List<String>> historialDuenos, Venta venta) {
 		this.titulo =titulo;
 		this.fecha= fecha;
 		this.lugarCreacion=lugarCreacion;
 		this.electricidad = electricidad;
 		this.exhibicion = true;
 		this.tiempoDisponible = tiempoDisponible;
-		this.bloqueado = false;
-		this.externo = externo;
+		this.propietario = propietario;
 		this.artista = artista;
-		this.historial = historial;
+		this.historialDuenos = historialDuenos;
+		this.venta = venta;
 	}
 		public void setExhibicion(boolean exhibicion) {
 			this.exhibicion = exhibicion;
 		}
-		public void setBloqueado(boolean bloqueado) {
-			this.bloqueado = bloqueado;
+		public void setPropietario(Propietario propietario) {
+			this.propietario = propietario;
 		}
-	
 		public String getTitulo() {
 			return titulo;
 		}
@@ -64,15 +64,30 @@ public class Pieza {
 		public String getTiempoDisponible() {
 			return tiempoDisponible;
 		}
-		public boolean isBloqueado() {
-			return bloqueado;
+		public Propietario getPropietario() {
+			return propietario;
 		}
-		public Externo getExterno() {
-			return externo;
+		public boolean isElectricidad() {
+			return electricidad;
 		}
-		public Map<String, List<String>> getHistorial(){
-			return historial;
+		public Map<String, List<String>> getHistorialDuenos(){
+			return historialDuenos;
 		}
-		
-		
+		public String getInfoPieza() {
+			String resultado = "Titulo: " + titulo + "\n"
+							 + "Fecha de creación: " + fecha + "\n"
+							 + "Lugar de creación: " + lugarCreacion + "\n"
+							 + "Propietario: " + propietario.getExterno().getNombre() + "\n"
+							 + "Autor: " + artista.getNombre();
+			return resultado;
+		}
+		public Venta getVenta() {
+			return venta;
+		}
+		public void setVenta(Venta venta) {
+			this.venta = venta; 
+		}
+		public String getFecha() {
+			return fecha;
+		}
 }

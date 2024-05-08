@@ -1,29 +1,35 @@
 package galeria.structurer_inventario;
 
-import galeria.structurer_usuarios.Externo;
+import galeria.structurer_usuarios.Comprador;
 
 public class Venta {
-	private double precio;
+	private float precio;
 	private boolean aceptada;
-	private Externo externo;
+	private Comprador comprador;
 	private boolean facturada;
 	private Pieza pieza;
+	private String fecha;
 	
-	public Venta(double precio, boolean aceptada, boolean facturada, Pieza pieza) {
+	public Venta(float precio, boolean aceptada, boolean facturada, Pieza pieza, Comprador comprador, String fecha) {
 		this.precio = precio;
 		this.aceptada = aceptada;
 		this.facturada = facturada;
 		this.pieza = pieza;
+		this.comprador = comprador;
+		this.fecha = fecha;
 	}
 	
 	public void setAceptada(boolean aceptada){
 		this.aceptada =aceptada;
 	}
-	public void setFacturada(boolean aceptada){
-		this.aceptada =aceptada;
+	public void setFacturada(boolean aceptada, String fecha){
+		this.facturada = aceptada;
+		if(aceptada) {
+			this.fecha = fecha;
+		}
 	}
 
-	public double getPrecio() {
+	public float getPrecio() {
 		return precio;
 	}
 
@@ -39,14 +45,18 @@ public class Venta {
 		return pieza;
 	}
 	
-	public Externo getExterno() {
-		return externo;
+	public String getFecha() {
+		return fecha;
 	}
-	public void setExterno(Externo externo) {
-		this.externo = externo;
+	
+	public Comprador getComprador() {
+		return comprador;
+	}
+	public void setComprador(Comprador comprador) {
+		this.comprador = comprador;
 	}
 
-	public void setPiezaz(Pieza pieza) {
+	public void setPieza(Pieza pieza) {
 		this.pieza = pieza;
 	}
 	

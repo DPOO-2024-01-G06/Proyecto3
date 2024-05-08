@@ -22,8 +22,8 @@ public class ControladorOperador {
 		oferta.getSubasta().agregarOferta(oferta);
 	}
 	
-	public void planearSubasta(Venta venta, double valorMinimo,LocalDateTime tiempo, double valorInicial) {
-		Subasta subasta = new Subasta(valorMinimo, valorInicial, tiempo, venta.getPieza());
+	public void planearSubasta(Venta venta, double valorMinimo , LocalDateTime tiempo, double valorInicial) {
+		Subasta subasta = new Subasta(valorMinimo, valorInicial, tiempo, venta.getPieza(), null);
 		galeria.getInventarioGaleria().agregarSubasta(subasta, venta);
 	}
 	

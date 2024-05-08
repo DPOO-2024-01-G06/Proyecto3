@@ -2,6 +2,8 @@ package galeria.structurer_inventario;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+import galeria.structurer_usuarios.Comprador;
+
 public class Subasta {
     private double valorMinimo;
     private double valorInicial;
@@ -10,7 +12,7 @@ public class Subasta {
     private ArrayList<Oferta> ofertas;
     private Pieza pieza;
 
-    public Subasta(double valorMinimo, double valorInicial, LocalDateTime limiteTiempo, Pieza pieza ) {
+    public Subasta(double valorMinimo, double valorInicial, LocalDateTime limiteTiempo, Pieza pieza, Comprador ganador) {
         this.valorMinimo = valorMinimo;
         this.valorInicial = valorInicial;
         this.ofertaMaxima = null;
