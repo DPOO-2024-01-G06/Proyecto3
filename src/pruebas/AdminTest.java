@@ -86,9 +86,25 @@ class AdminTest {
 		assertEquals(1,cAdmin.getVentasPendientes().size(), "No se esta utilizando el criterio del valor máximo");
 		
 		cAdmin.confirmarVenta(0, true);
-		assertTrue(venta.isAceptada(), "No se aceptando la venta");
+		assertTrue(venta.isAceptada(), "No se esta aceptando la venta");
 		assertEquals(1,galeria.getUsuariosGaleria().getCajero().getVentasPendientes().size(),"No se esta llevando la venta al cajero");
 	}
+	@Test
+	void testRechazarVenta() {
+		cAdmin.ingresarPiezaCedida(0, 1000);
+		Comprador comprador = cAdmin.getCompradores().get(0);
+		Venta  venta = galeria.getInventarioGaleria().getVentaPendiente(0);
+		venta.setComprador(comprador);
+		comprador.getVentasPendientes().add(venta);
+		galeria.getUsuariosGaleria().getAdministrador().getPendientesVerificar().add(comprador);
+		cAdmin.verificarExterno(0, 1200);
+		cAdmin.confirmarVenta(0, false);
+		assertFalse(venta.isAceptada(), "No se esta rechazando la venta");
+		assertEquals(0,galeria.getUsuariosGaleria().getCajero().getVentasPendientes().size(),"Se esta llevando la venta al cajero");
+		assertEquals(null,venta.getComprador(),"No se esta actualizando el comprador");
+		assertEquals(0,comprador.getVentasPendientes().size(),"No se esta actualizando la lista de pendientes del comprador");
+	}
+	
 	@Test
 	void testInvalidarExterno() {
 		cAdmin.ingresarPiezaCedida(0, 1000);
@@ -103,8 +119,35 @@ class AdminTest {
 		assertEquals(null,venta.getComprador(), "No se esta eliminando al usuario de la venta");
 	}
 	@Test
-	
-	
+	void testReestablecerMaximo1() {
+		cAdmin.ingresarPiezaCedida(0, 1000);
+		Comprador comprador = cAdmin.getCompradores().get(0);
+		galeria.getUsuariosGaleria().getAdministrador().getPendientesVerificar().add(comprador);
+		cAdmin.verificarExterno(0, 100);
+		Venta  venta = galeria.getInventarioGaleria().getVentaPendiente(0);
+		venta.setComprador(comprador);
+		comprador.getVentasPendientes().add(venta);
+		galeria.getUsuariosGaleria().getAdministrador().getSuperaronLimite().add(comprador);
+		cAdmin.reestablecerMaximo(0, 1001);
+		assertEquals(0,cAdmin.getSuperaronLimite().size(), "No se esta eliminando al usuario de la lista de superaron limite");
+		assertEquals(1,cAdmin.getVentasPendientes().size(), "No se esta agregando la venta al tener un limite superior");
+	}
+	@Test
+	void testReestablecerMaximo2() {
+		cAdmin.ingresarPiezaCedida(0, 1000);
+		Comprador comprador = cAdmin.getCompradores().get(0);
+		galeria.getUsuariosGaleria().getAdministrador().getPendientesVerificar().add(comprador);
+		cAdmin.verificarExterno(0, 100);
+		Venta  venta = galeria.getInventarioGaleria().getVentaPendiente(0);
+		venta.setComprador(comprador);
+		comprador.getVentasPendientes().add(venta);
+		galeria.getUsuariosGaleria().getAdministrador().getSuperaronLimite().add(comprador);
+		cAdmin.reestablecerMaximo(0, 999);
+		assertEquals(0,cAdmin.getSuperaronLimite().size(), "No se esta eliminando al usuario de la lista de superaron limite");
+		assertEquals(0,cAdmin.getVentasPendientes().size(), "No se esta evaluando correctamente el límite de maximo precio");
+		assertEquals(null,venta.getComprador(), "No se reestablece el comprador");
+		assertEquals(0,comprador.getVentasPendientes().size(), "No se reestablece la lista de ventas pendientes del comprador");
+	}
 	
 	
 	
