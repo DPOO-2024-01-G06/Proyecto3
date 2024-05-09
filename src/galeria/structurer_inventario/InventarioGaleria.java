@@ -1,4 +1,5 @@
 package galeria.structurer_inventario;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -65,6 +66,10 @@ public class InventarioGaleria {
     }
     public Map<Integer, Subasta> getSubastasPendientes(){
     	return subastasPendientes;
+    }
+    public Venta getVentaPendiente(int i){
+    	List<Venta> ventas = new ArrayList<Venta>(ventasPendientes.values());
+    	return ventas.get(i);
     }
     public List<Artista> getArtistas(){
     	return artistas;

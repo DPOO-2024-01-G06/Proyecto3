@@ -56,6 +56,58 @@ class AdminTest {
 		assertEquals(1,propietario.getPiezasPropiedad().size(), "No se esta actualizando las piezas propiedad");
 		assertEquals(0,propietario.getPiezasCedidas().size(), "No se estan actualizando las pieza cedidas");
 	}
+	@Test
+	void testVerificarUsuario() {
+		cAdmin.ingresarPiezaCedida(0, 1000);
+		Comprador comprador = cAdmin.getCompradores().get(0);
+		Venta  venta = galeria.getInventarioGaleria().getVentaPendiente(0);
+		venta.setComprador(comprador);
+		comprador.getVentasPendientes().add(venta);
+		galeria.getUsuariosGaleria().getAdministrador().getPendientesVerificar().add(comprador);
+		cAdmin.verificarExterno(0, 100);
+		assertEquals(true,comprador.getVerficado(), "No se esta verificando al usuario");
+		assertEquals(0,cAdmin.getUsuariosPendientes().size(), "No se esta eliminando al usuario de la lista de pendientes");
+		assertEquals(0,cAdmin.getVentasPendientes().size(), "No se esta utilizando el criterio del valor máximo");
+		assertEquals(null,venta.getComprador(), "No se esta bloqueando al usuario con valor mínimo");
+		assertEquals(0,comprador.getVentasPendientes().size(), "No se esta eliminando la venta de la lista de pendientes del comprador");
+		}
+
+	@Test
+	void testVerificarYAceptar() {
+		cAdmin.ingresarPiezaCedida(0, 1000);
+		Comprador comprador = cAdmin.getCompradores().get(0);
+		Venta  venta = galeria.getInventarioGaleria().getVentaPendiente(0);
+		venta.setComprador(comprador);
+		comprador.getVentasPendientes().add(venta);
+		galeria.getUsuariosGaleria().getAdministrador().getPendientesVerificar().add(comprador);
+		cAdmin.verificarExterno(0, 1200);
+		assertTrue(comprador.getVerficado(), "No se esta verificando al usuario");
+		assertEquals(0,cAdmin.getUsuariosPendientes().size(), "No se esta eliminando al usuario de la lista de pendientes");
+		assertEquals(1,cAdmin.getVentasPendientes().size(), "No se esta utilizando el criterio del valor máximo");
+		
+		cAdmin.confirmarVenta(0, true);
+		assertTrue(venta.isAceptada(), "No se aceptando la venta");
+		assertEquals(1,galeria.getUsuariosGaleria().getCajero().getVentasPendientes().size(),"No se esta llevando la venta al cajero");
+	}
+	@Test
+	void testInvalidarExterno() {
+		cAdmin.ingresarPiezaCedida(0, 1000);
+		Comprador comprador = cAdmin.getCompradores().get(0);
+		Venta  venta = galeria.getInventarioGaleria().getVentaPendiente(0);
+		venta.setComprador(comprador);
+		comprador.getVentasPendientes().add(venta);
+		galeria.getUsuariosGaleria().getAdministrador().getPendientesVerificar().add(comprador);
+		cAdmin.invalidarExterno(0);
+		assertEquals(0,cAdmin.getUsuariosPendientes().size(), "No se esta eliminando al usuario de la lista de pendientes");
+		assertEquals(0,comprador.getVentasPendientes().size(), "No se esta eliminando las ventas pendientes del usuario");
+		assertEquals(null,venta.getComprador(), "No se esta eliminando al usuario de la venta");
+	}
+	@Test
+	
+	
+	
+	
+	
 	
 	
 	

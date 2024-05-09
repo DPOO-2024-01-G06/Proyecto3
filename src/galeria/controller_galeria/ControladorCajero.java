@@ -23,7 +23,7 @@ public class ControladorCajero {
 	
 	public void registrarPago(int indice, boolean exito) {
 		Venta venta = cajero.getVentasPendientes().get(indice);
-		venta.setFacturada(exito, java.time.LocalDateTime.now().toString());
+		venta.setFacturada(exito, java.time.LocalDateTime.now().toString().substring(0,10));
 		cajero.getVentasPendientes().remove(indice);
 		Comprador comprador =  venta.getComprador();
 		if(exito) {
