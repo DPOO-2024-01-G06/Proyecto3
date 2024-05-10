@@ -59,7 +59,24 @@ public class ControladorComprador {
 		Oferta oferta = new Oferta(precio, metodoPago, subasta);
 		if(externo.getComprador().getVerficado()) {
 			galeria.getUsuariosGaleria().getOperador().agregarOfertaPendiente(oferta);
+			
 		}
 	}
 	
+	
+	public void actualizarContraseña(String contrasena) {
+		externo.actualizarContraseña(contrasena);
+	}
+	
+	public void actualizarCorreo(String correo) {
+		externo.actualizarCorreo(correo);
+	}
+	
+	public void actualizarCelular(String celular) {
+		externo.actualizarCelular(celular);
+	}
+	
+	public Comprador getComprador() {
+		return this.comprador;
+	}
 }
