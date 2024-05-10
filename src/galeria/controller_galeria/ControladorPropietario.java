@@ -10,7 +10,7 @@ public class ControladorPropietario {
 	private Externo externo;
 	private Galeria galeria;
 	
-	ControladorPropietario(Galeria galeria, Externo externo){
+	public ControladorPropietario(Galeria galeria, Externo externo){
 		this.externo = externo;
 		this.galeria = galeria;
 	}

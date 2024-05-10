@@ -13,7 +13,7 @@ import galeria.structurer_usuarios.Propietario;
 public class ControladorCajero {
 	private Galeria galeria;
 	private Cajero cajero;
-	ControladorCajero(Galeria galeria, Cajero cajero){
+	public ControladorCajero(Galeria galeria, Cajero cajero){
 		this.galeria = galeria;
 		this.cajero = cajero;
 	}
