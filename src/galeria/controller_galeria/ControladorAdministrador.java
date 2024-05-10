@@ -98,7 +98,7 @@ public class ControladorAdministrador{
 				pieza.getPropietario().getPiezasPropiedad().remove(pieza);
 				pieza.getPropietario().getPiezasCedidas().add(pieza);		
 			}
-			administrador.getPiezasPorAgregar().remove(indice);
+		administrador.getPiezasPorAgregar().remove(indice);
 		}
 	}
 	public void devolverPieza(int indice) {
@@ -121,6 +121,7 @@ public class ControladorAdministrador{
 				comprador.getVentasPendientes().remove(venta);
 			}
 		}
+		administrador.getSuperaronLimite().remove(indice);
 	}
 	
 	public List<Pieza> getListaPiezas(){

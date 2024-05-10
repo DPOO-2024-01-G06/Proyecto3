@@ -32,4 +32,16 @@ public class Externo extends Usuario {
 	public String getTipoUsuario() {
 		return "externo";
 	}
+	
+	public void actualizarContraseña(String contrasena) {
+		this.contrasena = contrasena;
+	}
+	
+	public void actualizarCorreo(String correo) {
+		this.correo = correo;
+	}
+	
+	public void actualizarCelular(String celular) {
+		this.celular = celular;
+	}
 }
