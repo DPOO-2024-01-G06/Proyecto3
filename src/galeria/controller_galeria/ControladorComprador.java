@@ -7,6 +7,7 @@ import java.util.List;
 
 import galeria.Galeria;
 import galeria.structurer_inventario.Oferta;
+import galeria.structurer_inventario.Pieza;
 import galeria.structurer_inventario.Subasta;
 import galeria.structurer_inventario.Venta;
 import galeria.structurer_usuarios.Administrador;
@@ -18,7 +19,7 @@ public class ControladorComprador {
 	private Externo externo;
 	private Comprador comprador;
 	
-	ControladorComprador(Galeria galeria, Externo externo){
+	public ControladorComprador(Galeria galeria, Externo externo){
 		this.galeria = galeria; 
 		this.externo = externo;
 		comprador = externo.getComprador();

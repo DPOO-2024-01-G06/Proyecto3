@@ -61,8 +61,8 @@ public class InterfazComprador extends InterfazAbstracta{
 		}
 	}
 	public static ControladorComprador iniciarSesion(Galeria galeria){
-		ControladorComprador controladorComprador = null;
-			while(controladorComprador == null) {
+		ControladorComprador contComprador = null;
+			while(contComprador == null) {
 			String usuario = input("Ingrese su usuario: ");
 			String contrasena = input("Ingrese su contraseña: ");
 			CoordinadorSesion coordinadorSesion = new CoordinadorSesion(galeria, usuario, contrasena);
@@ -70,11 +70,11 @@ public class InterfazComprador extends InterfazAbstracta{
 			if(coordinadorSesion.getControladorActual().equals("ControladorExterno")) {
 				boolean desicion = true;
 				coordinadorSesion.decidirExterno(desicion);
-				controladorComprador = coordinadorSesion.getControladorComprador();
+				contComprador = coordinadorSesion.getControladorComprador();
 			}
 			else System.out.println("El usuario o la contraseña ingresados no son válidos.");
 			}
-		return controladorComprador;
+		return contComprador;
 	}
 	public static void opciones() {
 		System.out.println("\n1 - Actualización de contraseña");
