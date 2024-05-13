@@ -6,6 +6,7 @@ import java.util.List;
 
 
 import galeria.Galeria;
+import galeria.structurer_inventario.Artista;
 import galeria.structurer_inventario.Oferta;
 import galeria.structurer_inventario.Pieza;
 import galeria.structurer_inventario.Subasta;
@@ -64,6 +65,15 @@ public class ControladorComprador {
 		}
 	}
 	
+	
+	public List<Pieza> getListaPiezas(){
+		List<Pieza> piezas = new ArrayList<Pieza>(galeria.getInventarioGaleria().getInventario().values());
+		return piezas;
+	}
+	
+	public List<Artista> getArtistas(){
+		return galeria.getInventarioGaleria().getArtistas();
+	}
 	
 	public void actualizarContraseña(String contrasena) {
 		externo.actualizarContraseña(contrasena);

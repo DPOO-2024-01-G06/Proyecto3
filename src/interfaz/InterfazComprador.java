@@ -1,12 +1,15 @@
 package interfaz;
 
 import java.util.List;
+import java.util.Map;
 
 import galeria.Galeria;
 import galeria.controller_galeria.ControladorComprador;
 import galeria.controller_galeria.CoordinadorSesion;
 
 import galeria.structurer_inventario.Venta;
+import galeria.structurer_inventario.Artista;
+import galeria.structurer_inventario.Pieza;
 import galeria.structurer_inventario.Subasta;
 import galeria.structurer_usuarios.Comprador;
 import persistencia.PersistenciaNuevo;
@@ -45,9 +48,15 @@ public class InterfazComprador extends InterfazAbstracta{
 				verSubastasPendientes(contComprador);
 			}
 			else if(opcion == 8) {
-				ofertarEnSubasta(contComprador);
+				verHistoriaPieza(contComprador);
 			}
 			else if(opcion == 9) {
+				verHistoriaArtista(contComprador);
+			}
+			else if(opcion == 10) {
+				ofertarEnSubasta(contComprador);
+			}
+			else if(opcion == 11) {
 				realizarCompra(contComprador);
 			}
 			else if(opcion == 0) {
@@ -84,8 +93,10 @@ public class InterfazComprador extends InterfazAbstracta{
 		System.out.println("5 - Comprobar estado de verificación");
 		System.out.println("6 - Ver piezas compradas");
 		System.out.println("7 - Ver subastas pendientes");
-		System.out.println("8 - Ofertar en una subasta");
-		System.out.println("9 - Realizar una compra");
+		System.out.println("8 - Ver historia de una pieza");
+		System.out.println("9 - Ver historia de una artista");
+		System.out.println("10 - Ofertar en una subasta");
+		System.out.println("11 - Realizar una compra");
 		System.out.println("0 - Cerrar sesion");
 	}
 	
@@ -134,8 +145,15 @@ public class InterfazComprador extends InterfazAbstracta{
 		if(ventas.size() == 0) 
 			System.out.println("No ha comprado ninguna pieza aún.");
 		else {
+			int i = 0;
+			System.out.println("Indice - Titulo - Artista - Fecha de Creación");
+			
 			for (Venta venta: ventas) {
-				System.out.println(venta);
+				 System.out.println(String.valueOf(i) + " - " + 
+						venta.getPieza().getTitulo() + " - " + 
+						venta.getPieza().getAutor()  + " - " +
+						venta.getPieza().getFecha());
+				i++;
 			}
 				
 		}
@@ -148,10 +166,71 @@ public class InterfazComprador extends InterfazAbstracta{
 		if(subastas.size() == 0) 
 			System.out.println("No hay ninguna subasta.");
 		else {
+			int i = 0;
+			System.out.println("Indice - Titulo - Oferta Máxima - Fecha límite");
+			
 			for (Subasta subasta: subastas) {
-				System.out.println(subasta);
+				 System.out.println(String.valueOf(i) + " - " +
+									subasta.getPieza().getTitulo() + " - " +
+									subasta.getOfertaMaxima() + " - " +
+									subasta.getLimiteTiempo());
+				i++;
 			}
 				
+		}
+	}
+	
+	public static void verHistoriaPieza(ControladorComprador contComprador) {
+		List<Pieza> piezas = contComprador.getListaPiezas();
+		if(piezas.size() == 0) System.out.println("No hay piezas para mostrar.");
+		else {
+			int i=0;
+			System.out.println("Indice - Titulo de la pieza");
+			
+			for(Pieza pieza: piezas){
+				System.out.println(String.valueOf(i) + " - " + 
+								   pieza.getTitulo());
+				i++;
+			} 
+			i = inputIndex("\nSeleccione un indice:", piezas.size());
+			Pieza pieza = piezas.get(i);
+			System.out.println(pieza.getInfoPieza());
+			Map<String, List<String>> historialPieza = pieza.getHistorialDuenos();
+			System.out.println("Nombre Propietario - Costo - Fecha");
+			
+			for(String comprador : historialPieza.keySet()) {
+				String costo =  historialPieza.get(comprador).get(0);
+				String fecha = historialPieza.get(comprador).get(1);
+				System.out.println(comprador + " - " + 
+								   costo + " - " + 
+								   fecha);
+			}
+			
+		}
+	}
+	
+	public static void verHistoriaArtista(ControladorComprador contComprador) {
+		List<Artista> artistas = contComprador.getArtistas();
+		if(artistas.size() ==0) System.out.println("No hay compradores para revisar");
+		else {
+			int i=0;
+			System.out.println("Indice- Nombre artista");
+			
+			for(Artista artista: artistas){
+				System.out.println(String.valueOf(i) + " - " + 
+								   artista.getNombre());
+				i++;
+			} 
+			i = inputIndex("Seleccione un indice:", artistas.size());
+			Artista artista= artistas.get(i); List<Pieza> piezas = artista.getPiezas();
+			System.out.println("Titulo - Fecha realización - Fecha de compra - precio");
+			
+			for(Pieza pieza: piezas) {
+				System.out.println(pieza.getTitulo()+ " - " + 
+								   pieza.getFecha() + " - " +
+								   pieza.getVenta().getFecha() + " - " + 
+								   pieza.getVenta().getPrecio());
+			}
 		}
 	}
 	
@@ -179,7 +258,7 @@ public class InterfazComprador extends InterfazAbstracta{
 	public static void realizarCompra(ControladorComprador contComprador) {
 		List<Venta> ventasDisponibles = contComprador.getVentasDisponibles();
 		int tamano = ventasDisponibles.size();
-		int indice = inputIndex("Seleccione el índice de la subasta para la que desea ofetar: ", tamano);
+		int indice = inputIndex("Seleccione el índice de la pieza que desea comprar: ", tamano);
 		contComprador.intentoComprar(indice);
 	}
 	
