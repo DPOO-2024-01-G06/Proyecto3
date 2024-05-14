@@ -71,28 +71,62 @@ public class CompradorTest {
 
 
     @Test
-    void testOfertar() {
-    	int tamano = galeria.getUsuariosGaleria().getOperador().getOfertasPendientes().size();
+    void testOfertarNotVerified() {
+    	Pieza pieza = galeria.getUsuariosGaleria().getAdministrador().getPiezasPorAgregar().get(0);
+    	Subasta subasta = new Subasta(1000, 1000, java.time.LocalDateTime.now(), pieza, null);
+    	galeria.getInventarioGaleria().getSubastasPendientes().put(1, subasta);
     	contComprador.ofertar(0, 999.0, "metodoPago");
-    	assertEquals(tamano, galeria.getUsuariosGaleria().getOperador().getOfertasPendientes().size(), "La oferta NO se agregó correctamente." );
-    	assertEquals((tamano + 1), galeria.getUsuariosGaleria().getOperador().getOfertasPendientes().size(), "La oferta se agregó correctamente." );
-    	
+    	assertEquals(0, galeria.getUsuariosGaleria().getOperador().getOfertasPendientes().size(), "La oferta NO se agregó correctamente." );
+    	assertEquals(0, contComprador.getComprador().getSubastasPendientes().size(), "La oferta NO se agregó correctamente." );
     }
     
     @Test
-    void testIntentoComprar1() { 
+    void testOfertarVerified() {
+    	contComprador.getComprador().setVerificado(true);
+    	Pieza pieza = galeria.getUsuariosGaleria().getAdministrador().getPiezasPorAgregar().get(0);
+    	Subasta subasta = new Subasta(1000, 1000, java.time.LocalDateTime.now(), pieza, null);
+    	galeria.getInventarioGaleria().getSubastasPendientes().put(1, subasta);
+    	contComprador.ofertar(0, 999.0, "metodoPago");
+    	assertEquals(1, galeria.getUsuariosGaleria().getOperador().getOfertasPendientes().size(), "La oferta NO se agregó correctamente." );
+    	assertEquals(1, contComprador.getComprador().getSubastasPendientes().size(), "La oferta NO se agregó correctamente." );
+    }
+    
+    @Test
+    void testIntentoComprarNotVerified() {
     	Comprador comprador = galeria.getUsuariosGaleria().getExternos().get(0).getComprador();
-    	int tamano = galeria.getUsuariosGaleria().getAdministrador().getSuperaronLimite().size();
+    	Pieza pieza = galeria.getUsuariosGaleria().getAdministrador().getPiezasPorAgregar().get(0);
+    	Venta venta = new Venta(1000, false, false, pieza, null, "");
+    	galeria.getInventarioGaleria().agregarPieza(venta);
     	contComprador.intentoComprar(0);
-        assertEquals(999, comprador.getValorMaximo(), "No se realizó la compra porque se alcanzó el valor maximo");
-        assertEquals(tamano, galeria.getUsuariosGaleria().getAdministrador().getSuperaronLimite().size(), "El tamañó de la lista de los usuarios que excedieron el precio no aumentó");
+        assertEquals(1, comprador.getVentasPendientes().size(), "No se está agregando a las ventas pendientes");
+        assertEquals(1, galeria.getUsuariosGaleria().getAdministrador().getPendientesVerificar().size(), "No se está agregando a pendientes verificar");
     }
     
     @Test
-    void testIntentoComprar2() {
-    	int tamano = galeria.getUsuariosGaleria().getAdministrador().getPendientesAceptar().size();
+    void testIntentoComprarVerified1() {
+    	Comprador comprador = galeria.getUsuariosGaleria().getExternos().get(0).getComprador();
+    	comprador.setVerificado(true);
+    	Pieza pieza = galeria.getUsuariosGaleria().getAdministrador().getPiezasPorAgregar().get(0);
+    	Venta venta = new Venta(1000, false, false, pieza, null, "");
+    	galeria.getInventarioGaleria().agregarPieza(venta);
     	contComprador.intentoComprar(0);
-        assertEquals(tamano, galeria.getUsuariosGaleria().getAdministrador().getPendientesAceptar().size(), "El tamañó de la lista de ventas pendientes no aumentó");
+    	assertEquals(1, comprador.getVentasPendientes().size(), "No se está agregando a las ventas pendientes");
+        assertEquals(0, galeria.getUsuariosGaleria().getAdministrador().getPendientesVerificar().size(), "No se está agregando a pendientes verificar");
+        assertEquals(1, galeria.getUsuariosGaleria().getAdministrador().getSuperaronLimite().size(), "No se agregó el comprador a superaron límite");
+    }
+    
+    @Test
+    void testIntentoComprarVerified2() {
+    	Comprador comprador = galeria.getUsuariosGaleria().getExternos().get(0).getComprador();
+    	comprador.setVerificado(true);
+    	comprador.setValorMaximo(1001);
+    	Pieza pieza = galeria.getUsuariosGaleria().getAdministrador().getPiezasPorAgregar().get(0);
+    	Venta venta = new Venta(1000, false, false, pieza, null, "");
+    	galeria.getInventarioGaleria().agregarPieza(venta);
+    	contComprador.intentoComprar(0);
+    	assertEquals(1, comprador.getVentasPendientes().size(), "No se está agregando a las ventas pendientes");
+        assertEquals(0, galeria.getUsuariosGaleria().getAdministrador().getPendientesVerificar().size(), "No se está agregando a pendientes verificar");
+        assertEquals(1, galeria.getUsuariosGaleria().getAdministrador().getPendientesAceptar().size(), "No se esta agregando a pendientes aceptar");
     }
     
     public Galeria SampleGaleria() {

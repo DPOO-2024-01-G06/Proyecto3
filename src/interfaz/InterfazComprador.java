@@ -17,7 +17,7 @@ import persistencia.PersistenciaNuevo;
 public class InterfazComprador extends InterfazAbstracta{
 
 	public static void main(String[] args) {
-		System.out.println("INTERFAZ DE COMPRADOR:");
+		System.out.println("INTERFAZ DE COMPRADOR");
 		PersistenciaNuevo persistenciaNuevo = new PersistenciaNuevo();
 		Galeria galeria = persistenciaNuevo.nuevaGaleria();
 		ControladorComprador contComprador = iniciarSesion(galeria);

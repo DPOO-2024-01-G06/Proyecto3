@@ -48,7 +48,7 @@ public class Comprador {
 	}
 	
 	public float getSalario() {
-		return salario;
+		return this.salario;
 	}
 	public Externo getExterno() {
 		return externo;

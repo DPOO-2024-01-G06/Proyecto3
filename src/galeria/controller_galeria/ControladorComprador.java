@@ -38,7 +38,7 @@ public class ControladorComprador {
 	}
 	
 	public List<Subasta> getSubastasDisponibles(){
-		return (List<Subasta>)galeria.getInventarioGaleria().getSubastasPendientes().values();
+		return new ArrayList<Subasta>(galeria.getInventarioGaleria().getSubastasPendientes().values());
 	}
 	
 	public void intentoComprar(int indice) {
@@ -56,12 +56,12 @@ public class ControladorComprador {
 		}
 	
 	public void ofertar(int indice, double precio, String metodoPago) {
-		List<Subasta> subastasPendientes = (List<Subasta>) galeria.getInventarioGaleria().getSubastasPendientes().values();
+		List<Subasta> subastasPendientes = getSubastasDisponibles();
 		Subasta subasta = subastasPendientes.get(indice);
 		Oferta oferta = new Oferta(precio, metodoPago, subasta);
 		if(externo.getComprador().getVerficado()) {
 			galeria.getUsuariosGaleria().getOperador().agregarOfertaPendiente(oferta);
-			
+			comprador.getSubastasPendientes().add(subasta);
 		}
 	}
 	
