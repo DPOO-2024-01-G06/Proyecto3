@@ -99,7 +99,6 @@ public class InventarioGaleria {
     	this.subastasPendientes= PersistenciaInventarioGaleria.cargarSubastasPendientes();
     	this.subastasPendientes=PersistenciaInventarioGaleria.cargarSubastasPendientes();
     	
-    	
     }
     
 }

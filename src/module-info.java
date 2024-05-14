@@ -5,7 +5,10 @@ module proy2 {
 	exports galeria.structurer_inventario;
 	exports interfaz;
 	exports persistencia;
+	exports errores;
 	exports galeria;
 
+	requires com.google.gson;
+	requires junit;
 	requires org.junit.jupiter.api;
 }

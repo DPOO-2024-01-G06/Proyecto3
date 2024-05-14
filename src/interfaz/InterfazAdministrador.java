@@ -227,7 +227,7 @@ public class InterfazAdministrador extends InterfazAbstracta{
 	}
 	public static void nueve(ControladorAdministrador cAdmin) {
 		List<Artista> artistas = cAdmin.getArtistas();
-		if(artistas.size() ==0) System.out.println("No hay compradores para revisar");
+		if(artistas.size() ==0) System.out.println("No hay artistas para revisar");
 		else {
 			int i=0;
 			System.out.println("Indice- Nombre artista");
