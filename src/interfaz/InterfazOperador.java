@@ -1,12 +1,17 @@
 package interfaz;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import galeria.Galeria;
+import galeria.controller_galeria.ControladorAdministrador;
 import galeria.controller_galeria.ControladorOperador;
 import galeria.controller_galeria.CoordinadorSesion;
+import galeria.structurer_inventario.Artista;
 import galeria.structurer_inventario.Oferta;
+import galeria.structurer_inventario.Pieza;
 import galeria.structurer_inventario.Venta;
 import persistencia.PersistenciaNuevo;
 
@@ -21,7 +26,7 @@ public class InterfazOperador extends InterfazAbstracta{
 		ControladorOperador cOperador = iniciarSesion(galeria);
 
 		int s =-1;
-		while(s != 5) {
+		while(s != 6) {
 			mostrarOpciones();
 			s = inputInt("Seleccione una opcion:");
 			if(s == 1) {
@@ -37,8 +42,11 @@ public class InterfazOperador extends InterfazAbstracta{
 			else if(s == 4) {
 				cuatro(cOperador);
 			}
-
 			else if(s == 5) {
+				cinco(cOperador);
+			}
+
+			else if(s == 6) {
 				System.out.println("Saliendo...");
 			}
 			
@@ -66,7 +74,9 @@ public class InterfazOperador extends InterfazAbstracta{
 		System.out.println("\n1- Agregar Oferta Pendiente");
 		System.out.println("2- Planear Subasta");
 		System.out.println("3- Actualizar datos");
-		System.out.println("4- Cerrar sesion");}
+		System.out.println("4- Ver historia de un artista");
+		System.out.println("5- Ver una pieza de la galeria");
+		System.out.println("6- Cerrar sesion");}
 	
 	public static void uno(ControladorOperador cOperador) {
 		List<Oferta> ofertasPendientes = cOperador.getOfertasPendientes();
@@ -108,7 +118,7 @@ public class InterfazOperador extends InterfazAbstracta{
 	
 	        float valorInicial = inputFloat("Ingrese el valor inicial de la subasta:");
 	
-	        cOperador.planearSubasta(venta, valorMinimo, fechaFinal, valorInicial);
+	        cOperador.planearSubasta(venta, valorMinimo,new ArrayList<Oferta>(), fechaFinal, valorInicial);
 		}
 	
 	}
@@ -121,6 +131,46 @@ public class InterfazOperador extends InterfazAbstracta{
 		System.out.println("Actualizacion exitosa!");
 	}
 	public static void cuatro(ControladorOperador cOperador) {
+		List<Artista> artistas = cOperador.getArtistas();
+		if(artistas.size() ==0) System.out.println("No hay artistas para revisar");
+		else {
+			int i=0;
+			System.out.println("Indice- Nombre artista");
+			for(Artista artista: artistas){
+				System.out.println(String.valueOf(i) + "- " + artista.getNombre());
+				i++;
+			} 
+			i = inputIndex("Seleccione un indice:", artistas.size());
+			Artista artista= artistas.get(i); List<Pieza> piezas = artista.getPiezas();
+			System.out.println("Titulo- Fecha realización- Fecha compra- precio");
+			for(Pieza pieza: piezas) {
+				System.out.println(pieza.getTitulo()+"- " +pieza.getFecha() + "- "+ pieza.getVenta().getFecha() +"- "+ pieza.getVenta().getPrecio());
+			}
+		}
+	}
+	public static void cinco(ControladorOperador cOperador) {
+		List<Pieza> piezas = cOperador.getListaPiezas();
+		if(piezas.size() == 0) System.out.println("No hay piezas para mostrar");
+		else {
+			int i=0;
+			System.out.println("Indice- Titulo de la pieza");
+			for(Pieza pieza: piezas){
+				System.out.println(String.valueOf(i) + "- " + pieza.getTitulo());
+				i++;
+			} 
+			i = inputIndex("Seleccione un indice:", piezas.size());
+			Pieza pieza = piezas.get(i);
+			System.out.println(pieza.getInfoPieza());
+			Map<String, List<String>> historialPieza = pieza.getHistorialDuenos();
+			System.out.println("Nombre Propietario- Costo- Fecha");
+			for(String comprador : historialPieza.keySet()) {
+				String costo =  historialPieza.get(comprador).get(0);
+				String fecha = historialPieza.get(comprador).get(1);
+				System.out.println(comprador + "- " +costo + "- "+ fecha);
+			}
+			
+		}}
+	public static void seis(ControladorOperador cOperador) {
 		//TODO cargar toda la informacion y actualizarla en los archivos de persistencia.
 	}
 	}

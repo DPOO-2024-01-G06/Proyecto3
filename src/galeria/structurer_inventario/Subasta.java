@@ -12,14 +12,15 @@ public class Subasta {
     private ArrayList<Oferta> ofertas;
     private Pieza pieza;
 
-    public Subasta(double valorMinimo, double valorInicial, LocalDateTime limiteTiempo, Pieza pieza, Comprador ganador) {
+    public Subasta(double valorMinimo, double valorInicial,ArrayList<Oferta> ofertas, LocalDateTime limiteTiempo, Pieza pieza, Comprador ganador) {
         this.valorMinimo = valorMinimo;
         this.valorInicial = valorInicial;
         this.ofertaMaxima = null;
         this.limiteTiempo = limiteTiempo;
-        new ArrayList<Oferta>();
         this.pieza = pieza;
+        this.ofertas=ofertas;
     }
+
 
     public void agregarOferta(Oferta oferta) {
         if (this.ofertaMaxima == null || oferta.getValor() > this.ofertaMaxima.getValor()) {

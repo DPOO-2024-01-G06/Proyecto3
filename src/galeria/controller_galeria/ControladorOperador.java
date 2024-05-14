@@ -7,9 +7,11 @@ import java.util.List;
 
 import galeria.Galeria;
 import galeria.structurer_inventario.Oferta;
+import galeria.structurer_inventario.Pieza;
 import galeria.structurer_inventario.Subasta;
 import galeria.structurer_inventario.Venta;
 import galeria.structurer_usuarios.Operador;
+import galeria.structurer_inventario.Artista;
 import galeria.structurer_inventario.InventarioGaleria;
 
 public class ControladorOperador {
@@ -18,14 +20,15 @@ public class ControladorOperador {
 
 	public ControladorOperador(Galeria galeria, Operador operador){
 		this.galeria = galeria;
+		this.operador=operador;
 	}
 	public void agregarOfertaPendiente(int indice) {
 		Oferta oferta = operador.getOfertasPendientes().get(indice);
 		oferta.getSubasta().agregarOferta(oferta);
-	}
+		operador.getOfertasPendientes().remove(indice);}
 	
-	public void planearSubasta(Venta venta, double valorMinimo , LocalDateTime tiempo, double valorInicial) {
-		Subasta subasta = new Subasta(valorMinimo, valorInicial, tiempo, venta.getPieza(), null);
+	public void planearSubasta(Venta venta, double valorMinimo , ArrayList<Oferta> ofertas,LocalDateTime tiempo, double valorInicial) {
+		Subasta subasta = new Subasta(valorMinimo, valorInicial,ofertas, tiempo,venta.getPieza(), null);
 		galeria.getInventarioGaleria().agregarSubasta(subasta, venta);
 	}
 
@@ -48,4 +51,14 @@ public class ControladorOperador {
 		return operador.getOfertasPendientes();
 	}
 	
+	public List<Artista> getArtistas(){
+		return galeria.getInventarioGaleria().getArtistas();
+	}
+	public List<Pieza> getListaPiezas(){
+		List<Pieza> piezas = new ArrayList<Pieza>(galeria.getInventarioGaleria().getInventario().values());
+		return piezas;
+	}
+	public Operador getOperador() {
+		return operador;
+	}
 }

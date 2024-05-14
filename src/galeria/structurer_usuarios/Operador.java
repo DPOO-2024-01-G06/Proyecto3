@@ -10,7 +10,7 @@ public class Operador extends Interno {
 	
 	public Operador(String nombreUsuario, String contraseña, String nombre, String celular, String correo, List<Oferta> ofertasPendientes) {
         super(nombreUsuario, contraseña, nombre, celular, correo);
-		this.ofertasPendientes = new ArrayList<>();
+		this.ofertasPendientes = ofertasPendientes;
 	}
 
 	public void agregarOfertaPendiente (Oferta oferta){

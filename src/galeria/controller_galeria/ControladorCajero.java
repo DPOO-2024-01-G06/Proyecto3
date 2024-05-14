@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import galeria.Galeria;
+import galeria.structurer_inventario.Artista;
 import galeria.structurer_inventario.Pieza;
 import galeria.structurer_inventario.Venta;
 import galeria.structurer_usuarios.Cajero;
@@ -61,6 +62,7 @@ public class ControladorCajero {
 		compradorActual.getPiezasCompradas().add(venta);
 		compradorActual.setValorColeccion(compradorActual.getValorColeccion() + venta.getPrecio());
 		if(compradorAntiguo != null) {
+			System.out.println("IFSDOIF");
 			boolean encontrado = false;
 			for(int i=0;!encontrado;i++) {
 				if(compradorAntiguo.getPiezasCompradas().get(i).getPieza().equals(venta.getPieza())) {
@@ -69,6 +71,7 @@ public class ControladorCajero {
 					compradorAntiguo.getPiezasCompradas().remove(i);
 					
 				}
+	
 					
 			}
 			
@@ -76,6 +79,18 @@ public class ControladorCajero {
 		}
 	}
 	
+	public void actualizarInfo(String contrasena, String nombre, String celular, String correo) {
+		cajero.actualizarDatos(contrasena, nombre, celular, correo);
+	}
 	
-	
+	public List<Artista> getArtistas(){
+		return galeria.getInventarioGaleria().getArtistas();
+	}
+	public List<Pieza> getListaPiezas(){
+		List<Pieza> piezas = new ArrayList<Pieza>(galeria.getInventarioGaleria().getInventario().values());
+		return piezas;
+	}
+	public Cajero getCajero() {
+		return cajero;
+	}
 }
