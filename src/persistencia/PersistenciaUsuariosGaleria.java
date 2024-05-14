@@ -131,5 +131,5 @@ public class PersistenciaUsuariosGaleria {
         } catch (JsonSyntaxException | IOException e) {
             throw new PersistenciaException("Error al cargar las ofertas pendientes", e);
         }
-    }
+    } 
 }
