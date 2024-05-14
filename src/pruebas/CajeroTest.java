@@ -61,59 +61,7 @@ public class CajeroTest{
         assertEquals(1,comprador.getPiezasCompradas().size(),"No se agrego a la lista de piezas compradas.");
         assertTrue(venta.isFacturada(),"No se facturo");
         }
-    /*
-   @Test
-    public void testAgregarHistorial() {
-        Pieza pieza = mock(Pieza.class);
-
-        Map<String, Externo> historialDuenos = new HashMap<>();
-        when(pieza.getHistorialDuenos());
-
-        ControladorCajero controlador = new ControladorCajero(null, null);
-
-        controlador.agregarHistorial(pieza, 100, "Comprador 1");
-
-
-        verify(pieza, times(1)).getHistorialDuenos();
-        assertEquals(1, historialDuenos.size());
-    }
-    @Test
-    public void testSetNuevoPropietario() {
-        Pieza pieza = mock(Pieza.class);
-        Propietario propietario1=mock(Propietario.class);
-        Propietario propietario2=mock(Propietario.class);
-        when(pieza.getPropietario()).thenReturn(propietario1);
-        ControladorCajero controladorCajero = new ControladorCajero(null, null);
-		controladorCajero.setNuevoPropietario(pieza, propietario2);
-
-            verify(propietario1).getPiezasCedidas();
-            verify(propietario1.getPiezasCedidas()).remove(pieza);
-            verify(propietario1).getPiezasPasadas();
-            verify(propietario1.getPiezasPasadas()).add(pieza);
-            verify(pieza).setPropietario(propietario2);
-            verify(propietario1).getPiezasPropiedad();
-            verify(propietario1.getPiezasPropiedad()).add(pieza);
-        }
-    
-    
-    @SuppressWarnings("deprecation")
-	@Test
-    public void testAgregarComprador() {
-        ControladorCajero ControladorCajero= mock(ControladorCajero.class);
-        Venta venta = mock(Venta.class);
-        Comprador comprador1 = mock(Comprador.class);
-        Comprador comprador2 = mock(Comprador.class);
-        when(comprador1.getVentasPendientes()).thenReturn(new ArrayList<>());
-        when(comprador1.getPiezasCompradas()).thenReturn(new ArrayList<>());
-        when(comprador1.getValorColeccion()).thenReturn((float) 0.0);
-
-        ControladorCajero.agregarComprador(venta, comprador2, null);
-
-            verify(comprador2.getVentasPendientes()).remove(venta);
-            verify(comprador2.getPiezasCompradas()).add(venta);
-            assertEquals(comprador2.getValorColeccion(), venta.getPrecio());
-        }
-    */
+  
 	
 	public Galeria SampleGaleria() {
 		//Crear artistas y asociarles una obra
@@ -136,7 +84,11 @@ public class CajeroTest{
 		//Crear un externo y asociarle una obra
 		Externo externo1 = new Externo("Juan123","0000","Juan Ramirez", "a","b",null,null);
 		externo1.crearComprador((float)10000);
+		Externo externo2 = new Externo("Juan123","0000","Juan Ramirez", "a","b",null,null);
 		List<Externo> externos = new ArrayList<Externo>();externos.add(externo1);
+		externos.add(externo2);
+		externo2.getPropietario().getPiezasPropiedad().add(video);
+		video.setPropietario(externo2.getPropietario());
 		//Creacion Galeria
 		InventarioGaleria inventarioGaleria = new InventarioGaleria(new HashMap<Integer, Subasta>(), new HashMap<Integer, Subasta>(), new  HashMap<Integer, Venta>(), new  HashMap<Integer, Venta>(), new HashMap<Integer, Pieza>(),artistas);
 		Administrador administrador = new Administrador("ADMIN", "0000", "a","b","c",new ArrayList<Venta>(),new ArrayList<Pieza>(), new ArrayList<Comprador>(), new ArrayList<Comprador>());

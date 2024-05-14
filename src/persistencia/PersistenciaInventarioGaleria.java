@@ -1,6 +1,7 @@
 package persistencia;
 
 import galeria.structurer_inventario.Artista;
+
 import galeria.structurer_inventario.Pieza;
 import galeria.structurer_inventario.Subasta;
 import galeria.structurer_inventario.Venta;
@@ -9,7 +10,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
-
 import errores.PersistenciaException;
 
 import java.io.FileReader;

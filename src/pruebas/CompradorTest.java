@@ -73,7 +73,7 @@ public class CompradorTest {
     @Test
     void testOfertarNotVerified() {
     	Pieza pieza = galeria.getUsuariosGaleria().getAdministrador().getPiezasPorAgregar().get(0);
-    	Subasta subasta = new Subasta(1000, 1000, java.time.LocalDateTime.now(), pieza, null);
+    	Subasta subasta = new Subasta(1000, 1000, new ArrayList<Oferta>(), java.time.LocalDateTime.now(), pieza, null);
     	galeria.getInventarioGaleria().getSubastasPendientes().put(1, subasta);
     	contComprador.ofertar(0, 999.0, "metodoPago");
     	assertEquals(0, galeria.getUsuariosGaleria().getOperador().getOfertasPendientes().size(), "La oferta NO se agregó correctamente." );
@@ -84,7 +84,7 @@ public class CompradorTest {
     void testOfertarVerified() {
     	contComprador.getComprador().setVerificado(true);
     	Pieza pieza = galeria.getUsuariosGaleria().getAdministrador().getPiezasPorAgregar().get(0);
-    	Subasta subasta = new Subasta(1000, 1000, java.time.LocalDateTime.now(), pieza, null);
+    	Subasta subasta = new Subasta(1000, 1000, new ArrayList<Oferta>(),java.time.LocalDateTime.now(), pieza, null);
     	galeria.getInventarioGaleria().getSubastasPendientes().put(1, subasta);
     	contComprador.ofertar(0, 999.0, "metodoPago");
     	assertEquals(1, galeria.getUsuariosGaleria().getOperador().getOfertasPendientes().size(), "La oferta NO se agregó correctamente." );

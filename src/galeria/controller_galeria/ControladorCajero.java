@@ -62,7 +62,6 @@ public class ControladorCajero {
 		compradorActual.getPiezasCompradas().add(venta);
 		compradorActual.setValorColeccion(compradorActual.getValorColeccion() + venta.getPrecio());
 		if(compradorAntiguo != null) {
-			System.out.println("IFSDOIF");
 			boolean encontrado = false;
 			for(int i=0;!encontrado;i++) {
 				if(compradorAntiguo.getPiezasCompradas().get(i).getPieza().equals(venta.getPieza())) {
