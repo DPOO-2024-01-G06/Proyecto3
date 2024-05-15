@@ -1,11 +1,9 @@
 package galeria.structurer_inventario;
 import java.util.ArrayList;
-import persistencia.PersistenciaInventarioGaleria;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import errores.PersistenciaException;
 
 
 public class InventarioGaleria {
@@ -84,21 +82,5 @@ public class InventarioGaleria {
     }
     public void addArtista(Artista artista) {
     	artistas.add(artista);
-    }
-    public void guardarInventarioGaleria() throws PersistenciaException {
-        PersistenciaInventarioGaleria.guardarInventarioGaleria(getInventario());
-        PersistenciaInventarioGaleria.guardarVentasPendientes(getVentasPendientes());
-        PersistenciaInventarioGaleria.guardarVentasAceptadas(getVentasAceptadas());
-        PersistenciaInventarioGaleria.guardarSubastasPendientes(getSubastasPendientes());
-        PersistenciaInventarioGaleria.guardarSubastasPasadas(getSubastasPasadas());
-    }
-    public void cargarInventarioGaleria() throws PersistenciaException {
-    	this.inventario = PersistenciaInventarioGaleria.cargarInventarioGaleria();
-    	this.ventasPendientes = PersistenciaInventarioGaleria.cargarVentasPendientes();
-    	this.ventasAceptadas = PersistenciaInventarioGaleria.cargarVentasAceptadas();
-    	this.subastasPendientes= PersistenciaInventarioGaleria.cargarSubastasPendientes();
-    	this.subastasPendientes=PersistenciaInventarioGaleria.cargarSubastasPendientes();
-    	
-    }
-    
+    }   
 }

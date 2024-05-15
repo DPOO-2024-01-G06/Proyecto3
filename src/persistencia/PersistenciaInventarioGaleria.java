@@ -22,7 +22,7 @@ import java.lang.reflect.Type;
 public class PersistenciaInventarioGaleria {
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    public static void guardarInventarioGaleria(Map<Integer, Pieza> inventario) throws PersistenciaException {
+    public void guardarInventarioGaleria(Map<Integer, Pieza> inventario) throws PersistenciaException {
         try (FileWriter writer = new FileWriter("InventarioGaleria.json")) {
             String json = gson.toJson(inventario);
             writer.write(json);
@@ -31,7 +31,7 @@ public class PersistenciaInventarioGaleria {
         }
     }
 
-    public static Map<Integer, Pieza> cargarInventarioGaleria() throws PersistenciaException {
+    public Map<Integer, Pieza> cargarInventarioGaleria() throws PersistenciaException {
         try (FileReader reader = new FileReader("InventarioGaleria.json")) {
             Type type = new TypeToken<Map<Integer, Pieza>>(){}.getType();
             return gson.fromJson(reader, type);
@@ -40,7 +40,7 @@ public class PersistenciaInventarioGaleria {
         }
     }
 
-    public static void guardarSubastasPendientes(Map<Integer, Subasta> inventory) throws PersistenciaException {
+    public void guardarSubastasPendientes(Map<Integer, Subasta> inventory) throws PersistenciaException {
         try (FileWriter writer = new FileWriter("SubastasPendientes.json")) {
             String json = gson.toJson(inventory);
             writer.write(json);
@@ -49,7 +49,7 @@ public class PersistenciaInventarioGaleria {
         }
     }
 
-    public static Map<Integer, Subasta> cargarSubastasPendientes() throws PersistenciaException {
+    public Map<Integer, Subasta> cargarSubastasPendientes() throws PersistenciaException {
         try (FileReader reader = new FileReader("SubastasPendientes.json")) {
             Type type = new TypeToken<Map<Integer, Subasta>>(){}.getType();
             return gson.fromJson(reader, type);
@@ -58,7 +58,7 @@ public class PersistenciaInventarioGaleria {
         }
     }
 
-    public static void guardarSubastasPasadas(Map<Integer, Subasta> inventory) throws PersistenciaException {
+    public void guardarSubastasPasadas(Map<Integer, Subasta> inventory) throws PersistenciaException {
         try (FileWriter writer = new FileWriter("Subastas pasadas.json")) {
             String json = gson.toJson(inventory);
             writer.write(json);
@@ -67,7 +67,7 @@ public class PersistenciaInventarioGaleria {
         }
     }
 
-    public static Map<Integer, Subasta> cargarSubastasPasadas() throws PersistenciaException {
+    public Map<Integer, Subasta> cargarSubastasPasadas() throws PersistenciaException {
         try (FileReader reader = new FileReader("Subastas pasadas.json")) {
             Type type = new TypeToken<Map<Integer, Subasta>>(){}.getType();
             return gson.fromJson(reader, type);
@@ -76,7 +76,7 @@ public class PersistenciaInventarioGaleria {
         }
     }
 
-    public static void guardarVentasPendientes(Map<Integer, Venta> inventory) throws PersistenciaException {
+    public void guardarVentasPendientes(Map<Integer, Venta> inventory) throws PersistenciaException {
         try (FileWriter writer = new FileWriter("VentasPendientes.json")) {
             String json = gson.toJson(inventory);
             writer.write(json);
@@ -85,7 +85,7 @@ public class PersistenciaInventarioGaleria {
         }
     }
 
-    public static Map<Integer, Venta> cargarVentasPendientes() throws PersistenciaException {
+    public Map<Integer, Venta> cargarVentasPendientes() throws PersistenciaException {
         try (FileReader reader = new FileReader("VentasPendientes.json")) {
             Type type = new TypeToken<Map<Integer, Venta>>(){}.getType();
             return gson.fromJson(reader, type);
@@ -94,7 +94,7 @@ public class PersistenciaInventarioGaleria {
         }
     }
 
-    public static void guardarVentasAceptadas(Map<Integer, Venta> inventory) throws PersistenciaException {
+    public void guardarVentasAceptadas(Map<Integer, Venta> inventory) throws PersistenciaException {
         try (FileWriter writer = new FileWriter("VentasAceptadas.json")) {
             String json = gson.toJson(inventory);
             writer.write(json);
@@ -103,7 +103,7 @@ public class PersistenciaInventarioGaleria {
         }
     }
 
-    public static Map<Integer, Venta> cargarVentasAceptadas() throws PersistenciaException {
+    public Map<Integer, Venta> cargarVentasAceptadas() throws PersistenciaException {
         try (FileReader reader = new FileReader("VentasAceptadas.json")) {
             Type type = new TypeToken<Map<Integer, Venta>>(){}.getType();
             return gson.fromJson(reader, type);
@@ -112,7 +112,7 @@ public class PersistenciaInventarioGaleria {
         }
     }
 
-    public static void guardarArtistas(List<Artista> artistas) throws PersistenciaException {
+    public void guardarArtistas(List<Artista> artistas) throws PersistenciaException {
         try (FileWriter writer = new FileWriter("Artistas.json")) {
             String json = gson.toJson(artistas);
             writer.write(json);
@@ -121,7 +121,7 @@ public class PersistenciaInventarioGaleria {
         }
     }
 
-    public static List<Artista> cargarArtistas() throws PersistenciaException {
+    public List<Artista> cargarArtistas() throws PersistenciaException {
         try (FileReader reader = new FileReader("Artistas.json")) {
             Type type = new TypeToken<List<Artista>>(){}.getType();
             return gson.fromJson(reader, type);

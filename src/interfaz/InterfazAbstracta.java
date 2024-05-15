@@ -1,6 +1,18 @@
 package interfaz;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+
+import errores.PersistenciaException;
+import galeria.Galeria;
+import galeria.structurer_inventario.Artista;
+import galeria.structurer_inventario.InventarioGaleria;
+import galeria.structurer_inventario.Pieza;
+import galeria.structurer_inventario.Subasta;
+import galeria.structurer_inventario.Venta;
+import galeria.structurer_usuarios.UsuariosGaleria;
+import persistencia.PersistenciaInventarioGaleria;
 
 public abstract class InterfazAbstracta {
 	
@@ -89,4 +101,42 @@ public abstract class InterfazAbstracta {
 		}
 		return indice;
 	}
+	public static InventarioGaleria cargarInventario(PersistenciaInventarioGaleria pInventario) {
+		InventarioGaleria inventario = null; 
+		try {
+			Map<Integer, Pieza> inventarioC = pInventario.cargarInventarioGaleria();
+			Map<Integer, Subasta> subastasPendientes = pInventario.cargarSubastasPendientes();
+			Map<Integer, Subasta> subastasPasadas = pInventario.cargarSubastasPasadas();
+			Map<Integer, Venta> ventasPendientes = pInventario.cargarVentasPendientes();
+			Map<Integer, Venta> ventasAceptadas = pInventario.cargarVentasAceptadas();
+			List<Artista> artistas = pInventario.cargarArtistas();
+			inventario = new InventarioGaleria(subastasPendientes, subastasPasadas, ventasPendientes, ventasAceptadas, inventarioC, artistas);
+		} catch (PersistenciaException e) {
+			System.out.println("Error al cargar el inventario");
+			e.printStackTrace();
+		}
+		return inventario;
+	}
+	
+	public static UsuariosGaleria cargarUsuarios() {
+		UsuariosGaleria usuarios = null;
+		return usuarios;
+	}
+	public static void salvarInventario(Galeria galeria, PersistenciaInventarioGaleria pInventario ) {
+		InventarioGaleria inventario = galeria.getInventarioGaleria();
+		try {
+			pInventario.guardarArtistas(inventario.getArtistas());
+			pInventario.guardarInventarioGaleria(inventario.getInventario());
+			pInventario.guardarSubastasPasadas(inventario.getSubastasPasadas());
+			pInventario.guardarVentasPendientes(inventario.getVentasPendientes());
+			pInventario.guardarSubastasPendientes(inventario.getSubastasPendientes());
+			pInventario.guardarVentasAceptadas(inventario.getVentasAceptadas());
+			
+		} catch (PersistenciaException e) {
+			e.printStackTrace();
+			System.out.println("Error al guardar el inventario");
+		}
+	}
+	
+	
 }
