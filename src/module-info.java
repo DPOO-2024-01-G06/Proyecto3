@@ -9,6 +9,5 @@ module proy2 {
 	exports galeria;
 
 	requires com.google.gson;
-	requires junit;
 	requires org.junit.jupiter.api;
 }

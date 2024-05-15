@@ -1,9 +1,7 @@
 package persistencia;
 
-import galeria.structurer_usuarios.Administrador;
-import galeria.structurer_inventario.Artista;
+import galeria.structurer_usuarios.Externo;
 import galeria.structurer_inventario.Pieza;
-import galeria.structurer_inventario.Subasta;
 import galeria.structurer_inventario.Venta;
 import galeria.structurer_inventario.Oferta;
 
@@ -18,7 +16,6 @@ import errores.PersistenciaException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 import java.lang.reflect.Type;
 
@@ -106,15 +103,6 @@ public class PersistenciaUsuariosGaleria {
         }
     }
 
-    public static Map<Integer, Venta> cargarPiezasCompradas() throws PersistenciaException {
-        try (FileReader reader = new FileReader("PiezasCompradas.json")) {
-            Type type = new TypeToken<Map<Integer, Venta>>(){}.getType();
-            return gson.fromJson(reader, type);
-        } catch (JsonSyntaxException | IOException e) {
-            throw new PersistenciaException("Error al cargar las piezas compradas", e);
-        }
-    }
-    
     public static void guardarOfertasPendientes(Map<Integer, Oferta> usuarios) throws PersistenciaException {
         try (FileWriter writer = new FileWriter("OfertasPendientes.json")) {
             String json = gson.toJson(usuarios);

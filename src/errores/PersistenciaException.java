@@ -1,7 +1,9 @@
 package errores;
 
 public class PersistenciaException extends Exception {
-	    public PersistenciaException(String message, Throwable cause) {
+	    private static final long serialVersionUID = 1L;
+
+		public PersistenciaException(String message, Throwable cause) {
 	        super(message, cause);
 	    }
 	}

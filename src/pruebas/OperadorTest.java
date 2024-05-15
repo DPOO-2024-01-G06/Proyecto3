@@ -40,8 +40,6 @@ public class OperadorTest {
     @Test
     void testAgregarOfertaPendiente() {
     	Pieza pieza=galeria.getUsuariosGaleria().getAdministrador().getPiezasPorAgregar().get(0);
-        Comprador comprador=galeria.getUsuariosGaleria().getExternos().get(0).getComprador();
-        Venta venta=new Venta(5165, false, false, pieza, null, null);
         Subasta subasta=new Subasta(0, 0,new ArrayList<Oferta>(), null, pieza, null);
         galeria.getInventarioGaleria().getSubastasPendientes().put(1, subasta);
         Oferta oferta= new Oferta(10, null, subasta);
@@ -54,7 +52,6 @@ public class OperadorTest {
     @Test
     void testPlanearSubasta() {
     	Pieza pieza=galeria.getUsuariosGaleria().getAdministrador().getPiezasPorAgregar().get(0);
-        Comprador comprador=galeria.getUsuariosGaleria().getExternos().get(0).getComprador();
         Venta venta=new Venta(5165, false, false, pieza, null, null);
         cOperador.planearSubasta(venta, 0, null, null, 0);
         assertEquals(1, galeria.getInventarioGaleria().getSubastasPendientes().values().size(),"No se actualiza la lista de operador");

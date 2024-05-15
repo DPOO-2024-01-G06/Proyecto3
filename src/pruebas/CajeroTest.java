@@ -11,7 +11,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import galeria.Galeria;
-import galeria.controller_galeria.ControladorAdministrador;
 import galeria.controller_galeria.ControladorCajero;
 import galeria.structurer_inventario.Artista;
 import galeria.structurer_inventario.Escultura;
@@ -27,15 +26,8 @@ import galeria.structurer_usuarios.Cajero;
 import galeria.structurer_usuarios.Comprador;
 import galeria.structurer_usuarios.Externo;
 import galeria.structurer_usuarios.Operador;
-import galeria.structurer_usuarios.Propietario;
 import galeria.structurer_usuarios.UsuariosGaleria;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import static org.junit.Assert.*;
 
 public class CajeroTest{
 	private Galeria galeria;

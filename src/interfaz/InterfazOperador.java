@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import galeria.Galeria;
-import galeria.controller_galeria.ControladorAdministrador;
 import galeria.controller_galeria.ControladorOperador;
 import galeria.controller_galeria.CoordinadorSesion;
 import galeria.structurer_inventario.Artista;

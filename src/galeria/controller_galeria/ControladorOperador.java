@@ -2,7 +2,6 @@ package galeria.controller_galeria;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import galeria.Galeria;
@@ -12,7 +11,6 @@ import galeria.structurer_inventario.Subasta;
 import galeria.structurer_inventario.Venta;
 import galeria.structurer_usuarios.Operador;
 import galeria.structurer_inventario.Artista;
-import galeria.structurer_inventario.InventarioGaleria;
 
 public class ControladorOperador {
 	private Operador operador; 

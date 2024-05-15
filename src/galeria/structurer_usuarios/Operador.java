@@ -3,7 +3,6 @@ package galeria.structurer_usuarios;
 import java.util.List;
 
 import galeria.structurer_inventario.Oferta;
-import java.util.ArrayList;
 
 public class Operador extends Interno {
 	public List<Oferta> ofertasPendientes;
