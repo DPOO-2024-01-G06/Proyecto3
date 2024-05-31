@@ -1,7 +1,12 @@
  package galeria.structurer_inventario;
 
+import java.io.Serializable;
 
-public class Oferta{
+public class Oferta implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3341102729069403793L;
 	private double valor;
 	private String metodoPago;
 	private Subasta subasta;

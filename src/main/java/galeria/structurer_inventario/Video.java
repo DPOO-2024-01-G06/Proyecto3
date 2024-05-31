@@ -11,6 +11,7 @@ public class Video extends Pieza{
 	/**
 	 * 
 	 */
+	private static final long serialVersionUID = 529374543344217327L;
 	private float duracion; 
 	private String formato;
 	private String recursosNecesarios;

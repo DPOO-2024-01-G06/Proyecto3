@@ -7,6 +7,10 @@ import galeria.structurer_inventario.Pieza;
 import galeria.structurer_inventario.Venta;
 
 public class Administrador extends Interno{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 3917252101512283969L;
 	private List<Pieza> piezasPorAgregar;
     private List<Comprador> pendientesVerificar;	
     private List<Venta> pendientesAceptar;

@@ -7,6 +7,10 @@ import java.util.Map;
 import galeria.structurer_usuarios.Propietario;
 
 public class Fotografia extends Pieza{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 3647379535355116608L;
 
 	private double ancho;
     private double alto;
