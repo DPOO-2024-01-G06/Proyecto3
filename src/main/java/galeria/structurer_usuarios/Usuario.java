@@ -1,9 +1,6 @@
 package galeria.structurer_usuarios;
 
-import java.io.Serializable;
-
-@SuppressWarnings("serial")
-public abstract class Usuario implements Serializable{
+public abstract class Usuario{
 	protected String nombreUsuario;
     protected String contrasena;
     protected String nombre;

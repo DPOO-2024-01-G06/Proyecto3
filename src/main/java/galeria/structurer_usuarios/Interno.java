@@ -1,7 +1,6 @@
 package galeria.structurer_usuarios;
 
 
-@SuppressWarnings("serial")
 public abstract class Interno extends Usuario{
 	public Interno() {
 		

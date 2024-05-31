@@ -1,13 +1,8 @@
 package galeria.structurer_usuarios;
 
-import java.io.Serializable;
 import java.util.List;
 
-public class UsuariosGaleria implements Serializable{
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 7339765893643918599L;
+public class UsuariosGaleria{
 	private Administrador administrador;
     private Cajero cajero;
     private Operador operador;

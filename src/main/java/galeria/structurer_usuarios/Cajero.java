@@ -6,10 +6,6 @@ import java.util.List;
 import galeria.structurer_inventario.Venta;
 
 public class Cajero extends Interno {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -9026241343904381467L;
 	private List<Venta> ventasPendientes;
 	
 	public Cajero() {

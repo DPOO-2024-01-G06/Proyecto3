@@ -1,15 +1,10 @@
 package galeria;
 
-import java.io.Serializable;
 
 import galeria.structurer_inventario.InventarioGaleria;
 import galeria.structurer_usuarios.UsuariosGaleria;
 
-public class Galeria implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -8616154029593689949L;
+public class Galeria{
 	private UsuariosGaleria usuariosGaleria;
 	private InventarioGaleria inventarioGaleria;
 	public Galeria(UsuariosGaleria usuariosGaleria, InventarioGaleria inventarioGaleria) {

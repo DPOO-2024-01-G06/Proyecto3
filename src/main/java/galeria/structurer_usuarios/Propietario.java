@@ -1,16 +1,11 @@
 package galeria.structurer_usuarios;
 
-import java.io.Serializable;
 import java.util.List;
 
 
 import galeria.structurer_inventario.Pieza;
 
-public class Propietario implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -6190865239314975485L;
+public class Propietario{
 	private List<Pieza> piezasPropiedad;
 	private List<Pieza> piezasCedidas;
 	private List<Pieza> piezasPasadas;

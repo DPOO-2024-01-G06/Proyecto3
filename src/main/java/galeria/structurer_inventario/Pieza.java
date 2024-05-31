@@ -4,11 +4,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import java.io.Serializable;
 import galeria.structurer_usuarios.Propietario;
 
-@SuppressWarnings("serial")
-public abstract class Pieza implements Serializable {
+public abstract class Pieza{
 
 	@Override
 	public boolean equals(Object obj) {

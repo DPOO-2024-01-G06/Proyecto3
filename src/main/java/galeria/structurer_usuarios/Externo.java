@@ -8,10 +8,6 @@ import galeria.structurer_inventario.Subasta;
 import galeria.structurer_inventario.Venta;
 
 public class Externo extends Usuario{
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1540625778280515643L;
 	private Comprador comprador;
     private Propietario propietario;
     public Externo() {

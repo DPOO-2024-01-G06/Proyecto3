@@ -1,13 +1,8 @@
 package galeria.structurer_inventario;
 
-import java.io.Serializable;
 import java.util.List;
 
-public class Artista implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -8955814915324637650L;
+public class Artista {
 	public String nombre;
 	private List<Pieza> piezas;
 	public Artista(){}

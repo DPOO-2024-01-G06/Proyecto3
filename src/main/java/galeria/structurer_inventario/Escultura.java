@@ -9,10 +9,6 @@ import galeria.structurer_usuarios.Propietario;
 
 
 public class Escultura extends Pieza{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 8102879744967769696L;
 	private float alto;
 	private float ancho;
 	private float profundidad;

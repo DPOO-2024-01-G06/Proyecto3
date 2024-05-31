@@ -1,15 +1,10 @@
 package galeria.structurer_inventario;
 
 
-import java.io.Serializable;
 
 import galeria.structurer_usuarios.Comprador;
 
-public class Venta implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 6782266808298826084L;
+public class Venta{
 	private float precio;
 	private boolean aceptada;
 	private Comprador comprador;

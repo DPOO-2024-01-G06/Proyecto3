@@ -3,7 +3,6 @@ package interfaz;
 import java.util.Scanner;
 
 import galeria.Galeria;
-import persistencia.PersistenciaGaleria;
 
 public abstract class InterfazAbstracta {
 	
@@ -94,12 +93,11 @@ public abstract class InterfazAbstracta {
 	}
 	
 	public static void salvarGaleria(Galeria galeria) {
-		PersistenciaGaleria perG = new PersistenciaGaleria();
-		perG.guardarGaleria(galeria);
+		//TODO
 	}
 	public static Galeria cargarGaleria() {
-		PersistenciaGaleria perG = new PersistenciaGaleria();
-		return perG.cargarGaleria();
+		//TODO
+		return null;
 		}
 		
 	}

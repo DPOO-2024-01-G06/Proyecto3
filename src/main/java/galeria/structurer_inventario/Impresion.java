@@ -12,7 +12,6 @@ public class Impresion extends Pieza{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 8585669469670431678L;
 	private double alto;
 	private double ancho;
 	private String tipoPapel;

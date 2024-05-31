@@ -6,10 +6,6 @@ import java.util.List;
 import galeria.structurer_inventario.Oferta;
 
 public class Operador extends Interno {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -4368913631583280004L;
 	public List<Oferta> ofertasPendientes;
 	public Operador() {
 		

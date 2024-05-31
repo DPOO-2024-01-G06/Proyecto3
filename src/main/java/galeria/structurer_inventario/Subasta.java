@@ -1,16 +1,11 @@
 package galeria.structurer_inventario;
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 
 import galeria.structurer_usuarios.Comprador;
 
-public class Subasta implements Serializable {
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = -1745584192861234428L;
+public class Subasta{
 	private float valorMinimo;
     private float valorInicial;
     private Oferta ofertaMaxima;

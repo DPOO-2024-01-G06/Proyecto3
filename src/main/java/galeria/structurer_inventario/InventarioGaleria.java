@@ -1,14 +1,9 @@
 package galeria.structurer_inventario;
-import java.io.Serializable;
 import java.util.List;
 
 
 
-public class InventarioGaleria implements Serializable {
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 5575720429421210612L;
+public class InventarioGaleria{
 	private List<Subasta> subastasPendientes;
     private List<Subasta> subastasPasadas;
     private List<Venta> ventasPendientes;

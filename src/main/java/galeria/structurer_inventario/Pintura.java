@@ -9,10 +9,6 @@ import galeria.structurer_usuarios.Propietario;
 
 
 public class Pintura extends Pieza{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 6548126891946382132L;
 	private float ancho;
 	private float alto;
 	private String type = "pintura";
