@@ -6,7 +6,7 @@ import galeria.Galeria;
 import galeria.structurer_inventario.Pieza;
 import galeria.structurer_usuarios.Externo;
 
-public class ControladorPropietario {
+public class ControladorPropietario extends ControladorGenerico {
 	private Externo externo;
 	private Galeria galeria;
 	
@@ -26,5 +26,10 @@ public class ControladorPropietario {
 		externo.getPropietario().getPiezasCedidas().add(pieza);
 		externo.getPropietario().getPiezasPropiedad().remove(pieza);
 		galeria.getUsuariosGaleria().getAdministrador().getPiezasPorAgregar().add(pieza);
+	}
+
+	@Override
+	public void actualizarInfo(String contrasena, String nombre, String celular, String correo) {
+		// TODO Auto-generated method stub
 	}
 }

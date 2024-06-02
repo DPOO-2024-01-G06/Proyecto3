@@ -14,7 +14,7 @@ import galeria.structurer_usuarios.Administrador;
 import galeria.structurer_usuarios.Comprador;
 import galeria.structurer_usuarios.Externo;
 
-public class ControladorComprador {
+public class ControladorComprador extends ControladorGenerico {
 	private Galeria galeria;
 	private Externo externo;
 	private Comprador comprador;
@@ -72,6 +72,7 @@ public class ControladorComprador {
 	public List<Artista> getArtistas(){
 		return galeria.getInventarioGaleria().getArtistas();
 	}
+	@Override
 	public void actualizarInfo(String contrasena, String nombre, String celular, String correo) {
 		comprador.getExterno().actualizarDatos(contrasena, nombre, celular, correo);
 	}

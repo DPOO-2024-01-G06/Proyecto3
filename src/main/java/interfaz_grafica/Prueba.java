@@ -1,9 +1,6 @@
 package interfaz_grafica;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -29,37 +26,39 @@ import galeria.structurer_usuarios.UsuariosGaleria;
 public class Prueba {
 
 	public static void main(String[] args) {
-		Galeria galeria = sampleGaleria();
-		if(true) {
-			try {
-				FileOutputStream fileOut = new FileOutputStream("dataPersistencia/galeria.ser");
-				 ObjectOutputStream out = new ObjectOutputStream(fileOut);
-				 out.writeObject(galeria);
-				 out.close();
-				 fileOut.close();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		if(true) {
-			Galeria galeria2 = null;
-			try {
-				FileInputStream fileIn  = new FileInputStream("dataPersistencia/galeria.ser");
-				ObjectInputStream in = new ObjectInputStream(fileIn);
-				galeria2 = (Galeria) in.readObject();
-				in.close();
-				fileIn.close();
-				for(Artista artista: galeria2.getInventarioGaleria().getArtistas()) {
-					System.out.println(artista.getNombre());
-					System.out.println(artista.getPiezas().get(0).getTitulo());
-				}
-			} 
-			catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+//		Galeria galeria = sampleGaleria();
+//		if(true) {
+//			try {
+//				FileOutputStream fileOut = new FileOutputStream("dataPersistencia/galeria.ser");
+//				 ObjectOutputStream out = new ObjectOutputStream(fileOut);
+//				 out.writeObject(galeria);
+//				 out.close();
+//				 fileOut.close();
+//			} catch (Exception e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
+//		if(true) {
+//			Galeria galeria2 = null;
+//			try {
+//				FileInputStream fileIn  = new FileInputStream("dataPersistencia/galeria.ser");
+//				ObjectInputStream in = new ObjectInputStream(fileIn);
+//				galeria2 = (Galeria) in.readObject();
+//				in.close();
+//				fileIn.close();
+//				for(Artista artista: galeria2.getInventarioGaleria().getArtistas()) {
+//					System.out.println(artista.getNombre());
+//					System.out.println(artista.getPiezas().get(0).getTitulo());
+//				}
+//			} 
+//			catch (Exception e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
+	GUISesion gui  = new GUISesion();
+	gui.ejecutar(sampleGaleria());
 	}
 	
 	public static Galeria sampleGaleria() {

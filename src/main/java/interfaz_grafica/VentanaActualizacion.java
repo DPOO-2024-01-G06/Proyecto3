@@ -6,11 +6,14 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-import galeria.controller_galeria.ControladorComprador;
+import galeria.controller_galeria.ControladorGenerico;
 
-public class ventana_actualizarDatos extends JFrame {
+
+@SuppressWarnings("serial")
+public class VentanaActualizacion extends JFrame {
 	
-	public ventana_actualizarDatos() {
+	public VentanaActualizacion(ControladorGenerico controlador) {
+		this.setLocationRelativeTo(null);
         setSize(500, 400);
         setResizable(false);
 		setTitle("Formato de actualización de datos");
@@ -77,8 +80,8 @@ public class ventana_actualizarDatos extends JFrame {
 				String nuevoCelular = campo3.getText();
 				String nuevaContrasena = new String(campo4.getPassword());
 				
-				if (nuevoNombreUsuario.length() < 8) {
-					JOptionPane.showMessageDialog(null, "Ingrese un nombre de usuario válido (Mínimo 8 caracteres).");
+				if (nuevoNombreUsuario.length() < 5) {
+					JOptionPane.showMessageDialog(null, "Ingrese un nombre de usuario válido (Mínimo cinco caracteres).");
 				}
 				else if (nuevoCorreo.length() < 8) {
 					JOptionPane.showMessageDialog(null, "Ingrese un correo válido (Mínimo 8 caracteres).");
@@ -90,9 +93,10 @@ public class ventana_actualizarDatos extends JFrame {
 					JOptionPane.showMessageDialog(null, "Su contraseña es muy corta (Mínimo 8 caracteres).");
 				}
 				else {
+					
 					//Llamar controlador de usuario y funcion para actualizar datos
 					//Usuario.actualizarInfo(nuevaContrasena, nuevoNombreUsuario, nuevoCelular, nuevoCorreo);
-				
+					controlador.actualizarInfo(nuevaContrasena, nuevoNombreUsuario, nuevoCelular, nuevoCorreo);
 					JOptionPane.showMessageDialog(null, "Sus datos han sido correctamente actualizados.");
 					dispose();
 				}
@@ -102,11 +106,9 @@ public class ventana_actualizarDatos extends JFrame {
         
         
     }
-    
-    public static void main(String[] args) {
-        ventana_actualizarDatos ventana_actualizarDatos  = new ventana_actualizarDatos();
-        ventana_actualizarDatos.setLocationRelativeTo(null);
-        ventana_actualizarDatos.setVisible(true);
-    }
 	
+	public void mostrar() {
+		this.setVisible(true);
+		
+	}	
 }

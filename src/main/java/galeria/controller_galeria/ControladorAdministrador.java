@@ -12,7 +12,7 @@ import galeria.structurer_usuarios.Comprador;
 import galeria.structurer_usuarios.Externo;
 import galeria.structurer_usuarios.Propietario;
 
-public class ControladorAdministrador{
+public class ControladorAdministrador extends ControladorGenerico{
 	private Administrador administrador;
 	private Galeria galeria;
 	
@@ -144,8 +144,8 @@ public class ControladorAdministrador{
 		return galeria.getInventarioGaleria().getArtistas();
 	}
 	
+	@Override
 	public void actualizarInfo(String contrasena, String nombre, String celular, String correo) {
 		administrador.actualizarDatos(contrasena, nombre, celular, correo);
-	}
-	
+	}	
 }

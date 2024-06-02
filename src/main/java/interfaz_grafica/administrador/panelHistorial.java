@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
+@SuppressWarnings("serial")
 public class panelHistorial extends JPanel{
 	private JButton btHistoriaPieza;
 	private JButton btHistoriaArtista;
@@ -43,5 +44,23 @@ public class panelHistorial extends JPanel{
 		btHistoriaArtista.setBorder(bordeBotones);
 		add(btHistoriaArtista);
 	}
+
+
+	public JButton getBtHistoriaPieza() {
+		return btHistoriaPieza;
+	}
+
+
+	public JButton getBtHistoriaArtista() {
+		return btHistoriaArtista;
+	}
+
+
+	public JButton getBtHistoriaComprador() {
+		return btHistoriaComprador;
+	}
+	
+	
+	
 	
 }

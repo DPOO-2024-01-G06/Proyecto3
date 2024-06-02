@@ -2,17 +2,13 @@ package interfaz_grafica.operador;
 
 import java.awt.Color;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
-import interfaz_grafica.ventana_actualizarDatos;
-
+@SuppressWarnings("serial")
 public class panelDatosUsuario extends JPanel {
 	private JButton btActualizarDatos;
 	
@@ -30,15 +26,14 @@ public class panelDatosUsuario extends JPanel {
 		btActualizarDatos.setBackground(new Color(52, 73, 94));
 		btActualizarDatos.setForeground(Color.WHITE);
 		btActualizarDatos.setBorder(bordeBotones);
-		btActualizarDatos.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        ventana_actualizarDatos ventana_actualizarDatos = new ventana_actualizarDatos();
-		        ventana_actualizarDatos.setLocationRelativeTo(null);
-				ventana_actualizarDatos.setVisible(true);
-		    }
-		});
 		add(btActualizarDatos);
 		
 	}
+
+	public JButton getBtActualizarDatos() {
+		return btActualizarDatos;
+	}
+	
+	
 
 }

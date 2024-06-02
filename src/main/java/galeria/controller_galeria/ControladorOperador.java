@@ -11,7 +11,7 @@ import galeria.structurer_inventario.Venta;
 import galeria.structurer_usuarios.Operador;
 import galeria.structurer_inventario.Artista;
 
-public class ControladorOperador {
+public class ControladorOperador extends ControladorGenerico {
 	private Operador operador; 
 	private Galeria galeria;
 
@@ -39,7 +39,7 @@ public class ControladorOperador {
 		return resultado;
 	}
 	
-	
+	@Override
 	public void actualizarInfo(String contrasena, String nombre, String celular, String correo) {
 		operador.actualizarDatos(contrasena, nombre, celular, correo);
 	}

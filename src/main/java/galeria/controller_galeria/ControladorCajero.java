@@ -11,7 +11,7 @@ import galeria.structurer_usuarios.Cajero;
 import galeria.structurer_usuarios.Comprador;
 import galeria.structurer_usuarios.Propietario;
 
-public class ControladorCajero {
+public class ControladorCajero extends ControladorGenerico{
 	private Galeria galeria;
 	private Cajero cajero;
 	public ControladorCajero(Galeria galeria, Cajero cajero){
@@ -77,7 +77,7 @@ public class ControladorCajero {
 			
 		}
 	}
-	
+	@Override
 	public void actualizarInfo(String contrasena, String nombre, String celular, String correo) {
 		cajero.actualizarDatos(contrasena, nombre, celular, correo);
 	}

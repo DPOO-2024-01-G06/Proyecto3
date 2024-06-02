@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
+@SuppressWarnings("serial")
 public class panelAcciones extends JPanel {
 	private JButton btPropCompra;
 	private JButton btIngresar;
@@ -49,4 +50,22 @@ public class panelAcciones extends JPanel {
 		btCerrarSesion.setBorder(bordeBotones);
 		add(btCerrarSesion);
 	}
+
+	public JButton getBtPropCompra() {
+		return btPropCompra;
+	}
+
+	public JButton getBtIngresar() {
+		return btIngresar;
+	}
+
+	public JButton getBtDevolver() {
+		return btDevolver;
+	}
+
+	public JButton getBtCerrarSesion() {
+		return btCerrarSesion;
+	}
+	
+	
 }
