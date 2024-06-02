@@ -16,7 +16,7 @@ public class panelHistorial extends JPanel{
 	private JButton btHistoriaComprador;
 	
 	
-	public panelHistorial() {
+	panelHistorial() {
 		setBackground(new Color(153, 163, 164));
 		setLayout(new GridLayout(1, 3, 30, 30));
 		setBorder(BorderFactory.createCompoundBorder(
@@ -26,7 +26,7 @@ public class panelHistorial extends JPanel{
 		
 		Border bordeBotones = BorderFactory.createLineBorder(new Color(33, 47, 60), 3);
 		
-		btHistoriaPieza = new JButton("<html><center> Buscar historial <br> de una pieza </center></html>");
+		btHistoriaPieza = new JButton("<html><center> Buscar historial <br> de un comprador </center></html>");
 		btHistoriaPieza.setBackground(new Color(52, 73, 94));
 		btHistoriaPieza.setForeground(Color.WHITE);
 		btHistoriaPieza.setBorder(bordeBotones);

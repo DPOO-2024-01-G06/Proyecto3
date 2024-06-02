@@ -10,7 +10,6 @@ import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 import galeria.controller_galeria.ControladorAdministrador;
 import interfaz_grafica.GUIUsuario;
-import interfaz_grafica.comprador.panelDatosUsuario;
 
 @SuppressWarnings("serial")
 public class GUIAdmin extends GUIUsuario {
