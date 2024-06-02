@@ -16,7 +16,7 @@ public class panelDatosUsuario extends JPanel {
 	private JButton btPiezasCompradas;
 	private JButton btSubastasPendientes;
 	
-	public panelDatosUsuario() {
+	panelDatosUsuario() {
 		setBackground(new Color(153, 163, 164));
 		setLayout(new GridLayout(1, 5, 30, 30));
 		setBorder(BorderFactory.createCompoundBorder(

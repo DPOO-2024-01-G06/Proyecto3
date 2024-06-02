@@ -5,8 +5,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
+import galeria.Galeria;
 import galeria.controller_galeria.ControladorGenerico;
+import persistencia.PersistenciaGaleria;
 
 @SuppressWarnings("serial")
 public class GUIUsuario extends JFrame {
@@ -18,6 +21,18 @@ public class GUIUsuario extends JFrame {
 				VentanaActualizacion nuevo = new VentanaActualizacion(controlador);
 				nuevo.setLocationRelativeTo(null);
 				nuevo.mostrar();
+			}
+		};
+		boton.addActionListener(buttonListener);
+	}
+	
+	public void setActionCerrarSesion(JButton boton, JFrame ventana, Galeria galeria) {
+		ActionListener buttonListener = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(ventana, "Galeria guardada exitosamente", "Salir",JOptionPane.INFORMATION_MESSAGE);
+				ventana.dispose();
+				new PersistenciaGaleria().guardarGaleria(galeria);
 			}
 		};
 		boton.addActionListener(buttonListener);

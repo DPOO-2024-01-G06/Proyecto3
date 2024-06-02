@@ -12,7 +12,7 @@ import javax.swing.border.TitledBorder;
 public class panelDatosUsuario extends JPanel {
 	private JButton btActualizarDatos;
 	
-	public panelDatosUsuario() {
+	panelDatosUsuario() {
 		setBackground(new Color(153, 163, 164));
 		setLayout(new GridLayout(1, 1, 30, 30));
 		setBorder(BorderFactory.createCompoundBorder(

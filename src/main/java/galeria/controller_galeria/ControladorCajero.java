@@ -92,4 +92,7 @@ public class ControladorCajero extends ControladorGenerico{
 	public Cajero getCajero() {
 		return cajero;
 	}
+	public Galeria getGaleria() {
+		return galeria;
+	}
 }

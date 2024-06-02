@@ -147,5 +147,8 @@ public class ControladorAdministrador extends ControladorGenerico{
 	@Override
 	public void actualizarInfo(String contrasena, String nombre, String celular, String correo) {
 		administrador.actualizarDatos(contrasena, nombre, celular, correo);
+	}
+	public Galeria getGaleria() {
+		return galeria;
 	}	
 }

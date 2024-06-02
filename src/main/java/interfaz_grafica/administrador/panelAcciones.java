@@ -16,7 +16,7 @@ public class panelAcciones extends JPanel {
 	private JButton btDevolver;
 	private JButton btCerrarSesion;
 	
-	public panelAcciones() {
+	panelAcciones() {
 		setBackground(new Color(153, 163, 164));
 		setLayout(new GridLayout(1, 4, 30, 30));
 		setBorder(BorderFactory.createCompoundBorder(
@@ -32,13 +32,13 @@ public class panelAcciones extends JPanel {
 		btPropCompra.setBorder(bordeBotones);
 		add(btPropCompra);
 	
-		btIngresar = new JButton("<html><center> Ingresar una <br> pieza cedida </center></html>");
+		btIngresar = new JButton("<html><center> Ingresar/Rechazar una <br> pieza cedida </center></html>");
 		btIngresar.setBackground(new Color(52, 73, 94));
 		btIngresar.setForeground(Color.WHITE);
 		btIngresar.setBorder(bordeBotones);
 		add(btIngresar);
 		
-		btDevolver = new JButton("<html><center> Rechazar una <br> pieza cedida </center></html>");
+		btDevolver = new JButton("<html><center> Devolver una <br> pieza cedida </center></html>");
 		btDevolver.setBackground(new Color(52, 73, 94));
 		btDevolver.setForeground(Color.WHITE);
 		btDevolver.setBorder(bordeBotones);

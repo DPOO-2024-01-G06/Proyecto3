@@ -14,7 +14,7 @@ public class panelAcciones extends JPanel {
 	private JButton btPago;
 	private JButton btCerrarSesion;
 	
-	public panelAcciones() {
+	panelAcciones() {
 		setBackground(new Color(153, 163, 164));
 		setLayout(new GridLayout(1, 2, 30, 30));
 		setBorder(BorderFactory.createCompoundBorder(

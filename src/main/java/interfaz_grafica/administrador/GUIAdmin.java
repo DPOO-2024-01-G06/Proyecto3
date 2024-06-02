@@ -8,10 +8,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
-
 import galeria.controller_galeria.ControladorAdministrador;
 import interfaz_grafica.GUIUsuario;
-import interfaz_grafica.comprador.panelDatosUsuario;
 
 @SuppressWarnings("serial")
 public class GUIAdmin extends GUIUsuario {
@@ -45,6 +43,7 @@ public class GUIAdmin extends GUIUsuario {
 		
 		//Acciones de los botones
 		setActionActualizarInfo(cAdmin,panelDU.getBtActualizarDatos());
+		setActionCerrarSesion(panelA.getBtCerrarSesion(), this, cAdmin.getGaleria());
 	}
 	public void ejecutar() {
 		this.setVisible(true);

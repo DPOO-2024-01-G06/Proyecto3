@@ -14,7 +14,7 @@ public class panelDatosUsuario extends JPanel {
 	private JButton btVerificacion;
 	private JButton btActualizarVMax;
 	
-	public panelDatosUsuario() {
+	panelDatosUsuario() {
 		setBackground(new Color(153, 163, 164));
 		setLayout(new GridLayout(1, 3, 30, 30));
 		setBorder(BorderFactory.createCompoundBorder(

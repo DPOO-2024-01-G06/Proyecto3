@@ -15,7 +15,7 @@ public class panelHistorial extends JPanel{
 	private JButton btHistoriaArtista;
 	
 	
-	public panelHistorial() {
+	panelHistorial() {
 		setBackground(new Color(153, 163, 164));
 		setLayout(new GridLayout(1, 2, 30, 30));
 		setBorder(BorderFactory.createCompoundBorder(
