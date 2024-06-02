@@ -22,7 +22,7 @@ public class VentanaHistoriaArtista extends JFrame {
 		panelTitulo.setBorder(BorderFactory.createEmptyBorder(10, 10, 0, 0));
 		add(panelTitulo, BorderLayout.NORTH);
 		
-		JLabel titulo = new JLabel("HISTORIAL DE ARTISTAS ");
+		JLabel titulo = new JLabel("HISTORIAL DE ARTISTAS");
 		titulo.setFont(new Font("Garamond", Font.BOLD, 24));
 		panelTitulo.add(titulo);
 		

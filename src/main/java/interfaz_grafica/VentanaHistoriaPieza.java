@@ -50,7 +50,7 @@ public class VentanaHistoriaPieza extends JFrame{
 										+ "5 - Pieza 5 \n"
 										+ "6 - Pieza 6 \n"
 										+ "7 - Pieza 7 \n"
-										+ "8 - Pieza 8 \n");
+										+ "8 - Pieza 8 \n" );
 		texto.setLineWrap(true);
 		texto.setWrapStyleWord(true);
 		texto.setFocusable(false);
