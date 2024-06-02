@@ -1,15 +1,24 @@
 package interfaz_grafica.cajero;
 
 import java.awt.Color;
+
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
 import galeria.controller_galeria.ControladorCajero;
+import galeria.controller_galeria.ControladorGenerico;
 import interfaz_grafica.GUIUsuario;
+import interfaz_grafica.cajero.VentanaRegistrarPago;
+
 
 @SuppressWarnings("serial")
 public class GUICajero extends GUIUsuario {
@@ -46,6 +55,7 @@ public class GUICajero extends GUIUsuario {
 		setActionCerrarSesion(panelA.getBtCerrarSesion(), this, cCajero.getGaleria());
 		setActionHistoriaPieza(panelH.getBtHistoriaPieza(),this,cCajero);
 		setActionHistoriaArtista(panelH.getBtHistoriaArtista(),this,cCajero);
+		setActionRegistrarPago(panelA.getBtPago(),this,cCajero);
 	}
 	
 	public void ejecutar() {
@@ -65,4 +75,15 @@ public class GUICajero extends GUIUsuario {
         JLabel imagenLabel = new JLabel(imagenIcon);
         panelI.add(imagenLabel);
     }
+	public void setActionRegistrarPago(JButton boton, JFrame ventana, ControladorCajero cCajero) {
+		ActionListener buttonListener = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VentanaRegistrarPago nuevo = new VentanaRegistrarPago(cCajero);
+				nuevo.setLocationRelativeTo(null);
+				nuevo.mostrar();
+			}
+		};
+		boton.addActionListener(buttonListener);
+	}
 }

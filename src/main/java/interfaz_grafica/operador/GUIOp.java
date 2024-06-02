@@ -2,9 +2,13 @@ package interfaz_grafica.operador;
 
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
@@ -47,9 +51,34 @@ public class GUIOp extends GUIUsuario {
 		setActionCerrarSesion(panelA.getBtCerrarSesion(), this, cOp.getGaleria());
 		setActionHistoriaPieza(panelH.getBtHistoriaPieza(),this,cOp);
 		setActionHistoriaArtista(panelH.getBtHistoriaArtista(),this,cOp);
+		setActionAgregarOferta(panelA.getBtAgregarOferta(),this,cOp);
+		setActionPlanearSubasta(panelA.getBtPlanearSubasta(),this, cOp);
 	}
 	public void ejecutar() {
 		this.setVisible(true);
+	}
+	public void setActionAgregarOferta(JButton boton, JFrame ventana, ControladorOperador cOp) {
+		ActionListener buttonListener = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VentanaAgregarOfertasPendientes nuevo = new VentanaAgregarOfertasPendientes(cOp);
+				nuevo.setLocationRelativeTo(null);
+				nuevo.mostrar();
+			}
+		};
+		boton.addActionListener(buttonListener);
+	}
+	
+	public void setActionPlanearSubasta(JButton boton, JFrame ventana, ControladorOperador cOp) {
+		ActionListener buttonListener = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VentanaPlanearSubasta nuevo = new VentanaPlanearSubasta(cOp);
+				nuevo.setLocationRelativeTo(null);
+				nuevo.mostrar();
+			}
+		};
+		boton.addActionListener(buttonListener);
 	}
 	
 	public void setPanelImagen() {
