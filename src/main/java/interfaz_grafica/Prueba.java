@@ -58,7 +58,7 @@ public class Prueba {
 //			}
 //		}
 	GUISesion gui  = new GUISesion();
-	gui.ejecutar(sampleGaleria());
+	gui.ejecutar();
 	}
 	
 	public static Galeria sampleGaleria() {

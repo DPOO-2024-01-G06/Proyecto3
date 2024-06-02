@@ -19,7 +19,7 @@ public class GUIOp extends GUIUsuario {
 	private panelAcciones panelA;
 	private JPanel panelI;
 	
-	public GUIOp(ControladorOperador cOP) {
+	public GUIOp(ControladorOperador cOp) {
 		setSize(900, 600);
 		setResizable(true);
 		setTitle("Interfaz Operador");
@@ -43,7 +43,8 @@ public class GUIOp extends GUIUsuario {
 		this.setLocationRelativeTo(null);
 		
 		//Acciones de los botones
-		setActionActualizarInfo(cOP,panelDU.getBtActualizarDatos());
+		setActionActualizarInfo(cOp,panelDU.getBtActualizarDatos());
+		setActionCerrarSesion(panelA.getBtCerrarSesion(), this, cOp.getGaleria());
 	}
 	public void ejecutar() {
 		this.setVisible(true);

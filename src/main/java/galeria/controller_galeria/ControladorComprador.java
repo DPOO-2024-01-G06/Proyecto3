@@ -82,4 +82,8 @@ public class ControladorComprador extends ControladorGenerico {
 	public Comprador getComprador() {
 		return this.comprador;
 	}
+
+	public Galeria getGaleria() {
+		return galeria;
+	}
 }

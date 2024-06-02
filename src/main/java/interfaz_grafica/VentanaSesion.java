@@ -43,7 +43,6 @@ public class VentanaSesion extends JFrame{
 		panel.add(campo1);panel.add(Box.createRigidArea(new Dimension(10, 10)));
 		panel.add(campo2); panel.add(Box.createRigidArea(new Dimension(10, 10)));
 		panel.add(boton);
-		boton.requestFocus();
 		this.add(panel);
 		this.setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

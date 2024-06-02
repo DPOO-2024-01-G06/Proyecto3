@@ -11,6 +11,7 @@ import interfaz_grafica.administrador.GUIAdmin;
 import interfaz_grafica.cajero.GUICajero;
 import interfaz_grafica.comprador.GUIComprador;
 import interfaz_grafica.operador.GUIOp;
+import persistencia.PersistenciaGaleria;
 
 public class GUISesion {
 	private VentanaSesion ventana = new VentanaSesion();
@@ -18,8 +19,9 @@ public class GUISesion {
 	private CoordinadorSesion coord;
 	private Galeria galeria;
 	
-	public void ejecutar(Galeria galeria) {
-		this.galeria = galeria;
+	public void ejecutar() {
+		PersistenciaGaleria persistencia = new PersistenciaGaleria();
+		galeria = persistencia.cargarGaleria();
 		addButtonListener();
 		ventana.mostrar();
 	}

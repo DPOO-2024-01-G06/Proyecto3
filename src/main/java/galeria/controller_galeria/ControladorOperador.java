@@ -58,4 +58,7 @@ public class ControladorOperador extends ControladorGenerico {
 	public Operador getOperador() {
 		return operador;
 	}
+	public Galeria getGaleria() {
+		return galeria;
+	}
 }
