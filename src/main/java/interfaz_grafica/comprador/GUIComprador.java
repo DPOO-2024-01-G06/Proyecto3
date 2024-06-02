@@ -45,6 +45,8 @@ public class GUIComprador extends GUIUsuario {
 		//Acciones de los botones
 		setActionActualizarInfo(cComprador,panelDU.getBtActualizarDatos());
 		setActionCerrarSesion(panelA.getBtCerrarSesion(), this, cComprador.getGaleria());
+		setActionHistoriaPieza(panelH.getBtHistoriaPieza(),this,cComprador);
+		setActionHistoriaArtista(panelH.getBtHistoriaArtista(),this,cComprador);
 	}
 	
 	public void ejecutar() {

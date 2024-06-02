@@ -44,6 +44,8 @@ public class GUICajero extends GUIUsuario {
 		//Acciones de los botones
 		setActionActualizarInfo(cCajero,panelDU.getBtActualizarDatos());
 		setActionCerrarSesion(panelA.getBtCerrarSesion(), this, cCajero.getGaleria());
+		setActionHistoriaPieza(panelH.getBtHistoriaPieza(),this,cCajero);
+		setActionHistoriaArtista(panelH.getBtHistoriaArtista(),this,cCajero);
 	}
 	
 	public void ejecutar() {

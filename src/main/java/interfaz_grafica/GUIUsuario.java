@@ -37,4 +37,28 @@ public class GUIUsuario extends JFrame {
 		};
 		boton.addActionListener(buttonListener);
 	}
+	
+	public void setActionHistoriaPieza(JButton boton, JFrame ventana, ControladorGenerico controlador) {
+		ActionListener buttonListener = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VentanaHistoriaPieza nuevo = new VentanaHistoriaPieza(controlador);
+				nuevo.setLocationRelativeTo(null);
+				nuevo.mostrar();
+			}
+		};
+		boton.addActionListener(buttonListener);
+	}
+	
+	public void setActionHistoriaArtista(JButton boton, JFrame ventana, ControladorGenerico controlador) {
+		ActionListener buttonListener = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VentanaHistoriaArtista nuevo = new VentanaHistoriaArtista(controlador);
+				nuevo.setLocationRelativeTo(null);
+				nuevo.mostrar();
+			}
+		};
+		boton.addActionListener(buttonListener);
+	}
 }

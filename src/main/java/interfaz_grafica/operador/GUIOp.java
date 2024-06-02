@@ -45,6 +45,8 @@ public class GUIOp extends GUIUsuario {
 		//Acciones de los botones
 		setActionActualizarInfo(cOp,panelDU.getBtActualizarDatos());
 		setActionCerrarSesion(panelA.getBtCerrarSesion(), this, cOp.getGaleria());
+		setActionHistoriaPieza(panelH.getBtHistoriaPieza(),this,cOp);
+		setActionHistoriaArtista(panelH.getBtHistoriaArtista(),this,cOp);
 	}
 	public void ejecutar() {
 		this.setVisible(true);

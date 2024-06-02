@@ -3,6 +3,7 @@ package galeria.controller_galeria;
 import java.util.List;
 
 import galeria.Galeria;
+import galeria.structurer_inventario.Artista;
 import galeria.structurer_inventario.Pieza;
 import galeria.structurer_usuarios.Externo;
 
@@ -31,5 +32,17 @@ public class ControladorPropietario extends ControladorGenerico {
 	@Override
 	public void actualizarInfo(String contrasena, String nombre, String celular, String correo) {
 		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public List<Artista> getArtistas() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Pieza> getListaPiezas() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

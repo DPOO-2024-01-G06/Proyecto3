@@ -12,7 +12,7 @@ import javax.swing.border.TitledBorder;
 @SuppressWarnings("serial")
 public class panelHistorial extends JPanel{
 	private JButton btHistoriaArtista;
-	private JButton btPieza;
+	private JButton btHistoriaPieza;
 	
 	
 	panelHistorial() {
@@ -31,11 +31,11 @@ public class panelHistorial extends JPanel{
 		btHistoriaArtista.setBorder(bordeBotones);
 		add(btHistoriaArtista);
 		
-		btPieza = new JButton("<html><center> Buscar pieza <br> en la galería </center></html>");
-		btPieza.setBackground(new Color(52, 73, 94));
-		btPieza.setForeground(Color.WHITE);
-		btPieza.setBorder(bordeBotones);
-		add(btPieza);
+		btHistoriaPieza = new JButton("<html><center> Buscar historial <br> de una pieza </center></html>");
+		btHistoriaPieza.setBackground(new Color(52, 73, 94));
+		btHistoriaPieza.setForeground(Color.WHITE);
+		btHistoriaPieza.setBorder(bordeBotones);
+		add(btHistoriaPieza);
 	}
 
 
@@ -44,8 +44,8 @@ public class panelHistorial extends JPanel{
 	}
 
 
-	public JButton getBtPieza() {
-		return btPieza;
+	public JButton getBtHistoriaPieza() {
+		return btHistoriaPieza;
 	}
 	
 	

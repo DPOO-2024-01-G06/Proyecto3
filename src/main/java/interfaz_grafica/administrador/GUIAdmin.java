@@ -44,6 +44,8 @@ public class GUIAdmin extends GUIUsuario {
 		//Acciones de los botones
 		setActionActualizarInfo(cAdmin,panelDU.getBtActualizarDatos());
 		setActionCerrarSesion(panelA.getBtCerrarSesion(), this, cAdmin.getGaleria());
+		setActionHistoriaPieza(panelH.getBtHistoriaPieza(),this,cAdmin);
+		setActionHistoriaArtista(panelH.getBtHistoriaArtista(),this,cAdmin);
 	}
 	public void ejecutar() {
 		this.setVisible(true);
