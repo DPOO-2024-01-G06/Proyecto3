@@ -1,4 +1,4 @@
-package interfaz;
+package interfaz_grafica;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
