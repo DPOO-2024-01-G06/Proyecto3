@@ -1,0 +1,12 @@
+Pasarela: PayU, Tarjeta Numero: 1234567812345, Cantidad: 100.0, Exito: false, Mensaje: Los datos de la tarjeta son incorrectos
+Pasarela: PayPal, Tarjeta Numero: 1234567812345678, Cantidad: 100.0, Exito: true, Mensaje: Transacción exitosa
+Pasarela: PayU, Tarjeta Numero: 1234567812345678, Cantidad: 100.0, Exito: true, Mensaje: Transacción exitosa
+Pasarela: PayPal, Tarjeta Numero: 1234567812345, Cantidad: 100.0, Exito: false, Mensaje: Los datos de la tarjeta son incorrectos
+Pasarela: PayU, Tarjeta Numero: 1234567812345, Cantidad: 100.0, Exito: false, Mensaje: Los datos de la tarjeta son incorrectos
+Pasarela: PayPal, Tarjeta Numero: 1234567812345678, Cantidad: 100.0, Exito: true, Mensaje: Transacción exitosa
+Pasarela: PayU, Tarjeta Numero: 1234567812345678, Cantidad: 100.0, Exito: true, Mensaje: Transacción exitosa
+Pasarela: PayPal, Tarjeta Numero: 1234567812345, Cantidad: 100.0, Exito: false, Mensaje: Los datos de la tarjeta son incorrectos
+Pasarela: PayU, Tarjeta Numero: 1234567812345, Cantidad: 100.0, Exito: false, Mensaje: Los datos de la tarjeta son incorrectos
+Pasarela: PayPal, Tarjeta Numero: 1234567812345678, Cantidad: 100.0, Exito: true, Mensaje: Transacción exitosa
+Pasarela: PayU, Tarjeta Numero: 1234567812345678, Cantidad: 100.0, Exito: true, Mensaje: Transacción exitosa
+Pasarela: PayPal, Tarjeta Numero: 1234567812345, Cantidad: 100.0, Exito: false, Mensaje: Los datos de la tarjeta son incorrectos
