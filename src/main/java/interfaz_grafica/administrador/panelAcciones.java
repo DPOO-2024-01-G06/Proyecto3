@@ -14,6 +14,7 @@ public class panelAcciones extends JPanel {
 	private JButton btPropCompra;
 	private JButton btIngresar;
 	private JButton btDevolver;
+
 	private JButton btCerrarSesion;
 	
 	panelAcciones() {
@@ -44,6 +45,7 @@ public class panelAcciones extends JPanel {
 		btDevolver.setBorder(bordeBotones);
 		add(btDevolver);
 		
+		
 		btCerrarSesion = new JButton("<html><center> Cerrar <br> Sesión </center></html>");
 		btCerrarSesion.setBackground(new Color(52, 73, 94));
 		btCerrarSesion.setForeground(Color.WHITE);
@@ -66,6 +68,7 @@ public class panelAcciones extends JPanel {
 	public JButton getBtCerrarSesion() {
 		return btCerrarSesion;
 	}
+
 	
 	
 }

@@ -14,7 +14,7 @@ public class panelHistorial extends JPanel{
 	private JButton btHistoriaPieza;
 	private JButton btHistoriaArtista;
 	private JButton btHistoriaComprador;
-	
+	private JButton btHistograma;
 	
 	panelHistorial() {
 		setBackground(new Color(153, 163, 164));
@@ -43,6 +43,12 @@ public class panelHistorial extends JPanel{
 		btHistoriaArtista.setForeground(Color.WHITE);
 		btHistoriaArtista.setBorder(bordeBotones);
 		add(btHistoriaArtista);
+		
+		btHistograma = new JButton("<html><center> Ver histograma <br> ventas</center></html>");
+		btHistograma.setBackground(new Color(52, 73, 94));
+		btHistograma.setForeground(Color.WHITE);
+		btHistograma.setBorder(bordeBotones);
+		add(btHistograma);
 	}
 
 
@@ -60,6 +66,9 @@ public class panelHistorial extends JPanel{
 		return btHistoriaComprador;
 	}
 	
+	public JButton getbtHistograma() {
+		return btHistograma;
+	}
 	
 	
 	
