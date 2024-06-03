@@ -62,6 +62,7 @@ public class GUIComprador extends GUIUsuario {
 		setActionHistoriaArtista(panelH.getBtHistoriaArtista(),this,cComprador);
 		
 		//Acciones botones panel acciones
+		setActionRealizarCompra(panelA.getBtComprar(), this, cComprador);
 		setActionCerrarSesion(panelA.getBtCerrarSesion(), this, cComprador.getGaleria());
 
 		
@@ -114,6 +115,18 @@ public class GUIComprador extends GUIUsuario {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				VentanaSubastasPendientes ventana = new VentanaSubastasPendientes(controlador);
+				ventana.setLocationRelativeTo(null);
+				ventana.mostrar();
+			}
+		};
+		boton.addActionListener(buttonListener);
+	}
+	
+	public void setActionRealizarCompra(JButton boton, JFrame ventana, ControladorComprador controlador) {
+		ActionListener buttonListener = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VentanaComprar ventana = new VentanaComprar(controlador);
 				ventana.setLocationRelativeTo(null);
 				ventana.mostrar();
 			}

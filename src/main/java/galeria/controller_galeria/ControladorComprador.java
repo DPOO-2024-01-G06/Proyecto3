@@ -5,6 +5,7 @@ import java.util.List;
 
 
 import galeria.Galeria;
+import galeria.pagos.InfoTarjeta;
 import galeria.structurer_inventario.Artista;
 import galeria.structurer_inventario.Oferta;
 import galeria.structurer_inventario.Pieza;
@@ -40,7 +41,7 @@ public class ControladorComprador extends ControladorGenerico {
 		return galeria.getInventarioGaleria().getSubastasPendientes();
 	}
 	
-	public void intentoComprar(int indice) {
+	public void intentoComprar(int indice, InfoTarjeta infoTarjeta) {
 		Venta venta = getVentasDisponibles().get(indice);
 		venta.setComprador(comprador);
 		comprador.getVentasPendientes().add(venta);
