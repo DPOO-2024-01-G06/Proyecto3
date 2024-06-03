@@ -49,7 +49,7 @@ public class CajeroTest{
         comprador.getVentasPendientes().add(venta);
         cCajero.getCajero().getVentasPendientes().add(venta);
         
-        cCajero.registrarPago(0, true);
+        cCajero.registrarPago(0, "2024/12/12");
         assertEquals(1,comprador.getPiezasCompradas().size(),"No se agrego a la lista de piezas compradas.");
         assertTrue(venta.isFacturada(),"No se facturo");
         }

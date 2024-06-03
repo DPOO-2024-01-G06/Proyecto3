@@ -1,4 +1,5 @@
 package galeria.controller_galeria;
+import galeria.pagos.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,9 +23,14 @@ public class ControladorCajero extends ControladorGenerico{
 		return cajero.getVentasPendientes();
 	}
 	
-	public void registrarPago(int indice, boolean exito) {
+	public void registrarPago(int indice, String fecha) {
 		Venta venta = cajero.getVentasPendientes().get(indice);
-		venta.setFacturada(exito, java.time.LocalDateTime.now().toString().substring(0,10));
+		boolean exito=false;
+		InfoTarjeta infoTarjeta=venta.getInfoTarjeta();
+		InfoPago infoPago=venta.getInfoPago();
+		IPasarelaPago pasarela= getPasarela(venta.getMetodoPago);
+		exito= pasarela.procesarPago(infoTarjeta,infoPago);
+		venta.setFacturada(exito, fecha);
 		cajero.getVentasPendientes().remove(indice);
 		Comprador comprador =  venta.getComprador();
 		if(exito) {

@@ -81,8 +81,8 @@ public class InterfazCajero extends InterfazAbstracta{
 				i++;
 			}
 			i=inputIndex("Seleccione un indice:",i);
-			boolean decision = inputBoolean("Desea aceptarla{Y} o rechazarla{N}? ", "Y", "N");
-			cCajero.registrarPago(i, decision);
+			String fecha = input("Ingrese la fecha en formato YYYY/MM/DD");
+			cCajero.registrarPago(i, fecha);
 		}
 
 		}
