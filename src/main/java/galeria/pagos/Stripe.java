@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Random;
 
 public class Stripe implements IPasarelaPago{
 	private static final int LONGITUD_NUMERO_TARJETA = 16;
@@ -16,6 +17,8 @@ public class Stripe implements IPasarelaPago{
     @Override
     public boolean procesarPago(InfoTarjeta infoTarjeta, InfoPago infoPago) {
     	boolean exito =true;
+    	infoPago.setNumeroCuenta("Stripe12345677890");
+    	infoPago.setTransactionNumber(randomString(15, "NUMBERS"));
     	try {
 			if(comprobarDatosTarjeta( infoTarjeta.getNumeroTarjeta() , infoTarjeta.getCvv())){
 				if(estaExpirado(infoTarjeta)) {
@@ -75,6 +78,23 @@ public class Stripe implements IPasarelaPago{
         } catch (DateTimeParseException e) {
             throw new IllegalArgumentException("Fecha de vencimiento inválida. Debe ser en formato MM/AA", e);
         }
+    }
+    public String randomString(int length, String tipo) {
+        final String CHARACTERS = "abcdefghijklmnopqrstuvwxyz";
+        final String NUMEROS = "1234567890";
+        StringBuilder sb = new StringBuilder();
+        Random random = new Random();
+
+        if (tipo.equals("NUMEROS")) {
+            for (int i = 0; i < length; i++) {
+                sb.append(NUMEROS.charAt(random.nextInt(NUMEROS.length())));
+            }
+        } else if (tipo.equals("CHARACTERS")) {
+            for (int i = 0; i < length; i++) {
+                sb.append(CHARACTERS.charAt(random.nextInt(CHARACTERS.length())));
+            }
+        }
+        return sb.toString();
     }
 	
 }

@@ -16,6 +16,8 @@ public class PayPal implements IPasarelaPago {
     @Override
     public boolean procesarPago(InfoTarjeta infoTarjeta, InfoPago infoPago) {
         boolean exito = true;
+        infoPago.setNumeroCuenta("PayPal0987654321");
+        infoPago.setTransactionNumber(randomString(15, "NUMBERS"));
         try {
             if (inicioSesion(correo, contrasena)) {
                 if (comprobarDatosTarjeta(infoTarjeta.getNumeroTarjeta(), infoTarjeta.getCvv())) {
