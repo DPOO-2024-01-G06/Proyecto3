@@ -21,7 +21,7 @@ public class Subasta implements Serializable {
     public Subasta() {
     	
     }
-    public Subasta(float valorMinimo, float valorInicial,ArrayList<Oferta> ofertas, String limiteTiempo, Pieza pieza, Comprador ganador) {
+    public Subasta(float valorMinimo, float valorInicial, ArrayList<Oferta> ofertas, String limiteTiempo, Pieza pieza, Comprador ganador) {
         this.valorMinimo = valorMinimo;
         this.valorInicial = valorInicial;
         this.ofertaMaxima = null;

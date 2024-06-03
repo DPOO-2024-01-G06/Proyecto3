@@ -22,6 +22,7 @@ import galeria.structurer_usuarios.Comprador;
 import galeria.structurer_usuarios.Externo;
 import galeria.structurer_usuarios.Operador;
 import galeria.structurer_usuarios.UsuariosGaleria;
+import persistencia.PersistenciaGaleria;
 
 public class Prueba {
 
@@ -57,6 +58,8 @@ public class Prueba {
 //				e.printStackTrace();
 //			}
 //		}
+	PersistenciaGaleria per = new PersistenciaGaleria();
+	per.guardarGaleria(sampleGaleria());
 	GUISesion gui  = new GUISesion();
 	gui.ejecutar();
 	}
@@ -85,6 +88,16 @@ public class Prueba {
 		Externo externo1 = new Externo("Juan123","0000","Juan Ramirez", "a","b",null,null);
 		Externo externo2 = new Externo("miguel123","0000","Miguel Corcho", "a","b",null,null);
 		externo1.crearComprador((float)10000);
+		
+		ArrayList<Oferta> ofertas = new ArrayList<Oferta>();
+		Subasta subasta1 = new Subasta(10, 10, ofertas, "2024-01-01", video2, null);
+		Oferta oferta1 = new Oferta(100, "tarjeta", subasta1);
+		subasta1.setOfertaMaxima(oferta1);
+		ofertas.add(oferta1);
+		
+		
+		Venta venta1 = new Venta(10, true, true, video2, externo1.getComprador(), "2024-01-01");
+		
 		externo2.getPropietario().addPiezaPropiedad(video);;
 		externo2.getPropietario().addPiezaPropiedad(video2);
 		video.setPropietario(externo2.getPropietario());
@@ -101,6 +114,9 @@ public class Prueba {
 		cAdmin.ingresarPiezaCedida(0, 20000);
 		cAdmin.ingresarPiezaCedida(0, 30000);
 		cAdmin.ingresarPiezaCedida(0, 40000);	
+		
+		cAdmin.getCompradores().get(0).getPiezasCompradas().add(venta1);
+		cAdmin.getCompradores().get(0).getSubastasPendientes().add(subasta1);
 		return galeria;
 	}
 
