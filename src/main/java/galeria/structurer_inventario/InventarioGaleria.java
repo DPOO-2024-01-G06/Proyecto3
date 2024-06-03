@@ -1,6 +1,7 @@
 package galeria.structurer_inventario;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 
 
@@ -15,6 +16,7 @@ public class InventarioGaleria implements Serializable {
     private List<Venta> ventasAceptadas;
     private List<Pieza> inventario; 
     private List<Artista> artistas;
+    private Map<String, Integer> histograma;
      
     public InventarioGaleria( List<Subasta> subastasPendientes,  List<Subasta> subastasPasadas,
     		 List<Venta> ventasPendientes,  List<Venta> ventasAceptadas,  List<Pieza> inventario, List<Artista> artistas){
@@ -26,8 +28,6 @@ public class InventarioGaleria implements Serializable {
 		this.artistas = artistas;
 	}
     
-
-
     public void agregarPieza(Venta venta) {
     	inventario.add(venta.getPieza());
     	ventasPendientes.add(venta);
@@ -36,8 +36,14 @@ public class InventarioGaleria implements Serializable {
     public void setVentaFacturada(Venta venta) {
     	ventasAceptadas.add(venta);
     	inventario.remove(venta.getPieza());
+    	String mes = venta.getFecha().substring(5, 6);
+    	if(histograma.get(mes) != null) {
+    		histograma.put(mes, histograma.get(mes) +1);
+    	}
+    	else {
+    		histograma.put(mes, 1);
+    	}
     }
-
     public void agregarSubasta(Subasta subasta, Venta venta) {
     	ventasPendientes.remove(venta);
     	subastasPendientes.add(subasta);

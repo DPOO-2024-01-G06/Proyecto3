@@ -70,8 +70,7 @@ public class GUIAdmin extends GUIUsuario {
 	public void ejecutar() {
 		this.setVisible(true);
 	}
-	
-	
+
 	public void setPanelImagen() {
 		panelI = new JPanel();
     	panelI.setBackground(new Color(153, 163, 164));
@@ -354,7 +353,7 @@ public class GUIAdmin extends GUIUsuario {
 						}
 					};
 					boton1.addActionListener(boton1Listener);
-					boton2.addActionListener(boton1Listener);
+					boton2.addActionListener(boton2Listener);
 				}
 			};
 				lista.addActionListener(comboBoxListener);
