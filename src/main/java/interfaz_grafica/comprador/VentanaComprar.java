@@ -84,7 +84,7 @@ public class VentanaComprar extends JFrame{
 		    @Override
 		    public void itemStateChanged(ItemEvent e) {
 		        if (e.getStateChange() == ItemEvent.SELECTED) {
-		            piezaSeleccionada = (Integer) lista.getSelectedItem();
+		            piezaSeleccionada = (Integer) lista.getSelectedItem(); 
 		        }
 		    }
 		});
