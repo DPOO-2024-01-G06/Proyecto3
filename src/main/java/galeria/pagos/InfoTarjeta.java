@@ -13,7 +13,7 @@ public class InfoTarjeta {
 		this.titular = titular;
 		this.numeroTarjeta = numeroTarjeta;
 		this.fechaExpiracion = fechaExpiracion;
-		this.dineroDisponible = 50000 + Math.random();
+		this.dineroDisponible = 50000 + Math.random() * (5000000 - 50000);
 		this.cvv = cvv;
 	}
 
